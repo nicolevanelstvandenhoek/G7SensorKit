@@ -582,7 +582,7 @@ if viewModel.sessionMode == .eavesdropping {
             showingDeletionSheet = true
         }, label: {
             Text(LocalizedString("Delete CGM", comment: "Button label for removing CGM"))
-                .foregroundColor(.red)
+                .foregroundColor(.pink)
         }).actionSheet(isPresented: $showingDeletionSheet) {
             ActionSheet(
                 title: Text("Are you sure you want to delete this CGM?"),
