@@ -134,9 +134,12 @@ struct G7SettingsView: View {
 
             Section () {
                 if !self.viewModel.scanning {
-                    Button("Scan for new sensor", action: {
-                        self.viewModel.scanForNewSensor()
-                    })
+                    Button(
+                        LocalizedString("Scan for new sensor", comment: "Button title to scan for a new G7 sensor"),
+                        action: {
+                            self.viewModel.scanForNewSensor()
+                        }
+                    )
                 }
 
                 deleteCGMButton
