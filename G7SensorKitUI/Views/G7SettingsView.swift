@@ -152,9 +152,12 @@ if viewModel.sessionMode == .eavesdropping {
                     Button(LocalizedString("Use with the Dexcom App Instead", comment: "Button title in settings to go back to reading through the Dexcom app"), action: { showingDexcomAppModeConfirmation = true })
                 case .eavesdropping:
                     if !self.viewModel.scanning {
-                        Button("Scan for new sensor", action: {
-                            self.viewModel.scanForNewSensor()
-                        })
+                        Button(
+                            LocalizedString("Scan for new sensor", comment: "Button title to scan for a new G7 sensor"),
+                            action: {
+                                self.viewModel.scanForNewSensor()
+                            }
+                        )
                     }
                 }
 
