@@ -5,13 +5,18 @@
 //  Created by Pete Schwamb on 9/24/22.
 //  Copyright © 2022 LoopKit Authors. All rights reserved.
 //
+//  The alignment of the fields and trend handling with the official app is
+//  from DexKit by Erik Tolboom (https://github.com/nightscout/DexKit), from
+//  JADX reverse engineering of the app.
+//
 
 import Foundation
 import LoopKit
+import LoopAlgorithm
 
 public struct G7GlucoseMessage: SensorMessage, Equatable {
-    //public let status: UInt8
-    //public let sequence: UInt32
+    /// Nonzero when the sensor has no current reading, e.g. 0x80 from a failed sensor; glucose is then nil.
+    public let status: UInt8
     public let glucose: UInt16?
     public let predicted: UInt16?
     public let glucoseIsDisplayOnly: Bool
@@ -30,8 +35,14 @@ public struct G7GlucoseMessage: SensorMessage, Equatable {
         return messageTimestamp - UInt32(age)
     }
 
+    /// Beyond this rate the Dexcom apps show no arrow at all. The wire value
+    /// is Int8 tenths, so up to about 12.7 arrives; the thresholds below
+    /// match the official table, and this cap keeps a wild rate from being
+    /// drawn as a confident triple arrow.
+    public static let maximumTrendRateForArrow = 8.0
+
     public var trendType: LoopKit.GlucoseTrend? {
-        guard let trend = trend else {
+        guard let trend = trend, abs(trend) <= G7GlucoseMessage.maximumTrendRateForArrow else {
             return nil
         }
 
@@ -53,7 +64,7 @@ public struct G7GlucoseMessage: SensorMessage, Equatable {
         }
     }
 
-    public var condition: GlucoseCondition? {
+    public var condition: LoopKit.GlucoseCondition? {
         guard let glucose = glucose else {
             return nil
         }
@@ -84,9 +95,7 @@ public struct G7GlucoseMessage: SensorMessage, Equatable {
             return nil
         }
 
-        guard data[1] == 00 else {
-            return nil
-        }
+        status = data[1]
 
         messageTimestamp = data[2..<6].toInt()
 
@@ -95,7 +104,7 @@ public struct G7GlucoseMessage: SensorMessage, Equatable {
         age = data[10..<12].to(UInt16.self)
 
         let glucoseData = data[12..<14].to(UInt16.self)
-        if glucoseData != 0xffff {
+        if glucoseData != 0xffff, status == 0 {
             glucose = glucoseData & 0xfff
             glucoseIsDisplayOnly = (data[18] & 0x10) > 0
         } else {
@@ -104,7 +113,7 @@ public struct G7GlucoseMessage: SensorMessage, Equatable {
         }
 
         let predictionData = data[16..<18].to(UInt16.self)
-        if predictionData != 0xffff {
+        if predictionData != 0xffff, status == 0 {
             predicted = predictionData & 0xfff
         } else {
             predicted = nil
@@ -112,7 +121,7 @@ public struct G7GlucoseMessage: SensorMessage, Equatable {
 
         algorithmState = AlgorithmState(rawValue: data[14])
 
-        if data[15] == 0x7f {
+        if data[15] == 0x7f || status != 0 {
             trend = nil
         } else {
             trend = Double(Int8(bitPattern: data[15])) / 10
@@ -125,6 +134,6 @@ public struct G7GlucoseMessage: SensorMessage, Equatable {
 
 extension G7GlucoseMessage: CustomDebugStringConvertible {
     public var debugDescription: String {
-        return "G7GlucoseMessage(glucose:\(String(describing: glucose)), sequence:\(sequence) glucoseIsDisplayOnly:\(glucoseIsDisplayOnly) state:\(String(describing: algorithmState)) messageTimestamp:\(messageTimestamp) age:\(age), data:\(data.hexadecimalString))"
+        return "G7GlucoseMessage(status:\(status) glucose:\(String(describing: glucose)), sequence:\(sequence) glucoseIsDisplayOnly:\(glucoseIsDisplayOnly) state:\(String(describing: algorithmState)) messageTimestamp:\(messageTimestamp) age:\(age), data:\(data.hexadecimalString))"
     }
 }
