@@ -8060,6 +8060,18 @@
           }
         }
       }
+    },
+    "%lld mg/dL" : {
+      "extractionState" : "manual",
+      "comment" : "Glucose value of a Dexcom Share follower reading",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mg/dL"
+          }
+        }
+      }
     }
   },
   "version" : "1.1"
