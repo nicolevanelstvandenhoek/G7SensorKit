@@ -325,6 +325,18 @@
         }
       }
     },
+    "%lld mg/dL" : {
+      "extractionState" : "manual",
+      "comment" : "Glucose value of a Dexcom Share follower reading",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mg/dL"
+          }
+        }
+      }
+    },
     "A big difference is a reason for caution, not a reason to calibrate" : {
       "comment" : "Calibration advice heading: large differences",
       "localizations" : {
