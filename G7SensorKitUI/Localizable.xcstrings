@@ -131,6 +131,446 @@
         }
       }
     },
+    "%1$@ can send readings to Dexcom Share, so your followers keep seeing your glucose in the Dexcom Follow app without the Dexcom app on this phone." : {
+      "comment" : "Share sign-in explanation (1: appName)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ kan metingen naar Dexcom Share sturen, zodat je volgers je glucose blijven zien in de Dexcom Follow-app zonder dat de Dexcom-app op deze telefoon staat."
+          }
+        }
+      }
+    },
+    "%1$@ is connected to the sensor directly and does not need the %2$@ app. A sensor works with only one app at a time, so it will take readings away for as long as it is on this phone. Delete it, or offload it under Settings, General, iPhone Storage." : {
+      "comment" : "Body of the settings warning when a Dexcom app is installed in direct mode (1: appName, 2: Dexcom app name)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ is rechtstreeks met de sensor verbonden en heeft de %2$@-app niet nodig. Een sensor werkt maar met één app tegelijk, dus zolang die app op deze telefoon staat, neemt hij metingen weg. Verwijder hem, of ruim hem op via Instellingen, Algemeen, iPhone-opslag."
+          }
+        }
+      }
+    },
+    "%1$@ is reading glucose through the Dexcom app's session, and can keep doing so. If you would rather not depend on the Dexcom app, pair the sensor directly instead: you will need the sensor's 4-digit pairing code, and the Dexcom app has to come off this phone first: delete it, or offload it under Settings, General, iPhone Storage. You can switch back later." : {
+      "comment" : "Body of the settings notice offering to pair directly (1: appName)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ leest de glucose via de sessie van de Dexcom-app en kan dat blijven doen. Wil je niet afhankelijk zijn van de Dexcom-app, koppel de sensor dan rechtstreeks: je hebt de 4-cijferige koppelcode van de sensor nodig, en de Dexcom-app moet eerst van deze telefoon af: verwijder hem, of ruim hem op via Instellingen, Algemeen, iPhone-opslag. Je kunt later terugschakelen."
+          }
+        }
+      }
+    },
+    "%1$@ will let go of the sensor and read through the Dexcom app's session again. Glucose and sensor alerts then come from the Dexcom app, and %1$@ stops uploading to Dexcom Share. You can pair directly again later with the sensor's code." : {
+      "comment" : "Message of the confirmation for switching back to the Dexcom app's session (1: appName)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ laat de sensor los en leest weer via de sessie van de Dexcom-app. Glucosewaarden en sensormeldingen komen dan van de Dexcom-app, en %1$@ stopt met uploaden naar Dexcom Share. Je kunt later opnieuw rechtstreeks koppelen met de code van de sensor."
+          }
+        }
+      }
+    },
+    "A new follower receives an email from Dexcom with instructions to sign up for the Dexcom Follow app and accept the invitation. Swipe to remove a follower." : {
+      "comment" : "Followers list footer",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een nieuwe volger krijgt een e-mail van Dexcom met uitleg om zich aan te melden voor de Dexcom Follow-app en de uitnodiging te accepteren. Veeg om een volger te verwijderen."
+          }
+        }
+      }
+    },
+    "Account" : {
+      "comment" : "Row label for the signed-in Dexcom Share account",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account"
+          }
+        }
+      }
+    },
+    "Dexcom emails the invitation. The follower accepts it in the Dexcom Follow app." : {
+      "comment" : "Invite follower footer",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom verstuurt de uitnodiging per e-mail. De volger accepteert die in de Dexcom Follow-app."
+          }
+        }
+      }
+    },
+    "Direct Connection Available (Optional)" : {
+      "comment" : "Title of the settings notice offering to pair directly",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechtstreekse verbinding beschikbaar (optioneel)"
+          }
+        }
+      }
+    },
+    "Email address" : {
+      "comment" : "Invite follower field placeholder",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-mailadres"
+          }
+        }
+      }
+    },
+    "Follower's name" : {
+      "comment" : "Invite follower field placeholder",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naam van de volger"
+          }
+        }
+      }
+    },
+    "Followers" : {
+      "comment" : "Row label opening the followers page",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volgers"
+          }
+        }
+      }
+    },
+    "following" : {
+      "comment" : "Follower state: active",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "volgt"
+          }
+        }
+      }
+    },
+    "High" : {
+      "comment" : "Follower alert: high",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoog"
+          }
+        }
+      }
+    },
+    "Install the Dexcom app, sign in, and add this sensor with its 4-digit pairing code%1$@. The sensor may take up to 15 minutes to accept the Dexcom app. %2$@ will show readings again once the Dexcom app is connected." : {
+      "comment" : "Instructions after switching back to the Dexcom app's session (1: the pairing code, if known; 2: appName)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installeer de Dexcom-app, log in en voeg deze sensor toe met de 4-cijferige koppelcode%1$@. Het kan tot 15 minuten duren voordat de sensor de Dexcom-app accepteert. %2$@ toont weer metingen zodra de Dexcom-app verbonden is."
+          }
+        }
+      }
+    },
+    "Invitation Failed" : {
+      "comment" : "Title of the alert when a follower invitation is refused",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uitnodigen mislukt"
+          }
+        }
+      }
+    },
+    "Invite" : {
+      "comment" : "Button title to send a follower invitation",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uitnodigen"
+          }
+        }
+      }
+    },
+    "Invite Follower" : {
+      "comment" : "Navigation title of the invite follower page",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volger uitnodigen"
+          }
+        }
+      }
+    },
+    "invited" : {
+      "comment" : "Follower state: invitation pending",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "uitgenodigd"
+          }
+        }
+      }
+    },
+    "Last Upload" : {
+      "comment" : "Row label for the last Dexcom Share upload time",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laatste upload"
+          }
+        }
+      }
+    },
+    "Low" : {
+      "comment" : "Follower alert: low",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laag"
+          }
+        }
+      }
+    },
+    "No Data (1 hour)" : {
+      "comment" : "Follower alert: no data",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen gegevens (1 uur)"
+          }
+        }
+      }
+    },
+    "No followers yet." : {
+      "comment" : "Followers list: empty",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nog geen volgers."
+          }
+        }
+      }
+    },
+    "Not Now" : {
+      "comment" : "Button title to skip Dexcom Share sign-in during setup",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niet nu"
+          }
+        }
+      }
+    },
+    "Now Set Up the Dexcom App" : {
+      "comment" : "Title of the instructions after switching back to the Dexcom app's session",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stel nu de Dexcom-app in"
+          }
+        }
+      }
+    },
+    "Password" : {
+      "comment" : "Share sign-in field placeholder",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wachtwoord"
+          }
+        }
+      }
+    },
+    "Region" : {
+      "comment" : "Share sign-in server picker label",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regio"
+          }
+        }
+      }
+    },
+    "Send readings to Dexcom Share so followers keep seeing your glucose in the Dexcom Follow app." : {
+      "comment" : "Dexcom Share section footnote when signed out",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stuur metingen naar Dexcom Share, zodat volgers je glucose blijven zien in de Dexcom Follow-app."
+          }
+        }
+      }
+    },
+    "Sign In" : {
+      "comment" : "Button title to sign in to Dexcom Share",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inloggen"
+          }
+        }
+      }
+    },
+    "Sign In to Dexcom Share" : {
+      "comment" : "Button title to sign in to Dexcom Share from settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inloggen bij Dexcom Share"
+          }
+        }
+      }
+    },
+    "Sign in with the Dexcom account that owns the sensor. The password is kept in the keychain on this phone only." : {
+      "comment" : "Share sign-in: which account, where the password goes",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in met het Dexcom-account waar de sensor bij hoort. Het wachtwoord wordt alleen op deze telefoon bewaard, in de sleutelhanger."
+          }
+        }
+      }
+    },
+    "Sign Out" : {
+      "comment" : "Button title to sign out of Dexcom Share",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uitloggen"
+          }
+        }
+      }
+    },
+    "Starting Alerts" : {
+      "comment" : "Section header for a new follower's initial alert settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meldingen om mee te beginnen"
+          }
+        }
+      }
+    },
+    "Stop the %@ App" : {
+      "comment" : "Title of the settings warning when a Dexcom app is installed in direct mode (1: app name)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop de %@-app"
+          }
+        }
+      }
+    },
+    "Switch to the Dexcom App" : {
+      "comment" : "Confirmation button to switch back to the Dexcom app's session",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overstappen naar de Dexcom-app"
+          }
+        }
+      }
+    },
+    "Upload Problem" : {
+      "comment" : "Title of the Dexcom Share upload error notice",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploadprobleem"
+          }
+        }
+      }
+    },
+    "Urgent Low" : {
+      "comment" : "Follower alert: urgent low",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urgent laag"
+          }
+        }
+      }
+    },
+    "Use with the Dexcom App Instead?" : {
+      "comment" : "Title of the confirmation for switching back to the Dexcom app's session",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toch de Dexcom-app gebruiken?"
+          }
+        }
+      }
+    },
+    "Username or email" : {
+      "comment" : "Share sign-in field placeholder",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruikersnaam of e-mailadres"
+          }
+        }
+      }
+    },
+    "Waiting for the first reading to upload." : {
+      "comment" : "Dexcom Share status before the first upload",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wacht op de eerste meting om te uploaden."
+          }
+        }
+      }
+    },
+    "Your name, as shown to them" : {
+      "comment" : "Invite follower field placeholder for the publisher's display name",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jouw naam, zoals zij die zien"
+          }
+        }
+      }
+    },
     "– – –" : {
       "comment" : "No glucose value representation (3 dashes for mg/dL)",
       "localizations" : {
