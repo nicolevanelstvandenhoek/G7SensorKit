@@ -1,6 +1,39 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%1$@ %2$d Day" : {
+      "comment" : "Sensor product name with its nominal session length (1: name, e.g. Dexcom G7, 2: days)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$d dagen"
+          }
+        }
+      }
+    },
+    "A contact with this name was left on the account by an earlier invitation that did not complete, and it cannot be reused. Invite them under a slightly different name." : {
+      "comment" : "Share error: contact name taken by an orphaned contact",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er staat nog een contact met deze naam op het account van een eerdere uitnodiging die niet is afgerond, en die kan niet opnieuw worden gebruikt. Nodig deze persoon uit onder een iets andere naam."
+          }
+        }
+      }
+    },
+    "Could not pair with any sensor in range." : {
+      "comment" : "Pairing failure reason when every discovered G7 sensor failed",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan met geen enkele sensor in de buurt koppelen."
+          }
+        }
+      }
+    },
     "Dexcom G7" : {
       "comment" : "CGM display title",
       "localizations" : {
@@ -146,6 +179,83 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dexcom G7"
+          }
+        }
+      }
+    },
+    "Dexcom ONE+" : {
+      "comment" : "CGM display title for a ONE+ sensor",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom ONE+"
+          }
+        }
+      }
+    },
+    "Dexcom Share answered with HTTP %d." : {
+      "comment" : "Share error: HTTP status (1: status code)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom Share antwoordde met HTTP %d."
+          }
+        }
+      }
+    },
+    "Dexcom Share answered with something unexpected." : {
+      "comment" : "Share error: undecodable response",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom Share gaf een onverwacht antwoord."
+          }
+        }
+      }
+    },
+    "Dexcom Share does not accept this sensor as the account's device." : {
+      "comment" : "Share error: receiver not assigned",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom Share accepteert deze sensor niet als apparaat van het account."
+          }
+        }
+      }
+    },
+    "Dexcom Share does not know this account name." : {
+      "comment" : "Share error: account not found",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom Share kent deze accountnaam niet."
+          }
+        }
+      }
+    },
+    "Dexcom Share rejected the password." : {
+      "comment" : "Share error: password invalid",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom Share heeft het wachtwoord geweigerd."
+          }
+        }
+      }
+    },
+    "Dexcom Stelo" : {
+      "comment" : "CGM display title for a Stelo sensor",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom Stelo"
           }
         }
       }
@@ -305,6 +415,116 @@
         }
       }
     },
+    "Japan" : {
+      "comment" : "Dexcom Share server region",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Japan"
+          }
+        }
+      }
+    },
+    "No pairing code or saved key is available for this sensor." : {
+      "comment" : "Error description when a G7 authentication is attempted with no credentials",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er is geen koppelcode of opgeslagen sleutel voor deze sensor."
+          }
+        }
+      }
+    },
+    "No readings have arrived for 20 minutes. Keep your phone within range of the sensor. If this continues, check your glucose with a meter." : {
+      "comment" : "Alert body for signal loss",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er zijn al 20 minuten geen metingen binnengekomen. Houd je telefoon in de buurt van de sensor. Blijft dit zo, controleer je glucose dan met een meter."
+          }
+        }
+      }
+    },
+    "No Sensor Readings" : {
+      "comment" : "Alert title for signal loss",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen sensormetingen"
+          }
+        }
+      }
+    },
+    "No sensor was found in 20 minutes. Make sure the sensor is inserted and within range, and that no other phone or app is using it." : {
+      "comment" : "Pairing failure reason when the scan for a G7 sensor times out",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er is in 20 minuten geen sensor gevonden. Controleer of de sensor is aangebracht en binnen bereik is, en of geen andere telefoon of app hem gebruikt."
+          }
+        }
+      }
+    },
+    "No sensor was found. Make sure the sensor is inserted and within range." : {
+      "comment" : "Pairing failure reason when no G7 sensor was discovered",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er is geen sensor gevonden. Controleer of de sensor is aangebracht en binnen bereik is."
+          }
+        }
+      }
+    },
+    "Not signed in to Dexcom Share." : {
+      "comment" : "Share error: no credentials",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niet ingelogd bij Dexcom Share."
+          }
+        }
+      }
+    },
+    "OK" : {
+      "comment" : "Alert acknowledgment button label",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "Outside the United States" : {
+      "comment" : "Dexcom Share server region",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buiten de Verenigde Staten"
+          }
+        }
+      }
+    },
+    "Sensor Connection Refused" : {
+      "comment" : "Alert title when the sensor refuses authentication",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorverbinding geweigerd"
+          }
+        }
+      }
+    },
     "Sensor expired" : {
       "comment" : "The description of sensor algorithm state when sensor is expired.",
       "localizations" : {
@@ -450,6 +670,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "传感器已过期"
+          }
+        }
+      }
+    },
+    "Sensor Expired" : {
+      "comment" : "Alert title at nominal sensor expiry",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor verlopen"
+          }
+        }
+      }
+    },
+    "Sensor Expires in 2 Hours" : {
+      "comment" : "Alert title 2 hours before sensor expiry",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor verloopt over 2 uur"
+          }
+        }
+      }
+    },
+    "Sensor Expires in 24 Hours" : {
+      "comment" : "Alert title 24 hours before sensor expiry",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor verloopt over 24 uur"
           }
         }
       }
@@ -1213,6 +1466,193 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "传感器在启动中"
+          }
+        }
+      }
+    },
+    "Sensor Session Ended" : {
+      "comment" : "Alert title at the end of the sensor grace period",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorsessie beëindigd"
+          }
+        }
+      }
+    },
+    "The connection to the sensor was lost before authentication." : {
+      "comment" : "Error description when the G7 link drops before authentication starts",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De verbinding met de sensor is verbroken voordat de controle klaar was."
+          }
+        }
+      }
+    },
+    "The credentials could not be stored (%d)." : {
+      "comment" : "Share error: keychain status (1: OSStatus)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De inloggegevens konden niet worden opgeslagen (%d)."
+          }
+        }
+      }
+    },
+    "The pairing code is the 4-digit number printed on the sensor applicator." : {
+      "comment" : "Pairing failure reason for a malformed G7 pairing code",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De koppelcode is het 4-cijferige nummer dat op de applicator van de sensor staat."
+          }
+        }
+      }
+    },
+    "The sensor accepted the pairing code but refused the connection." : {
+      "comment" : "Error description for a G7 sensor rejecting an authenticated connection with no reason given",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De sensor heeft de koppelcode geaccepteerd, maar de verbinding geweigerd."
+          }
+        }
+      }
+    },
+    "The sensor is already connected to another phone or app. A sensor only works with one at a time; stop the other one from using this sensor, then try again." : {
+      "comment" : "Error description when a G7 sensor's display slot is taken",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De sensor is al verbonden met een andere telefoon of app. Een sensor werkt maar met één tegelijk. Zorg dat de andere deze sensor niet meer gebruikt en probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "The sensor no longer recognizes this phone and will be paired again automatically." : {
+      "comment" : "Error description when a G7 sensor has lost the app's key",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De sensor herkent deze telefoon niet meer en wordt automatisch opnieuw gekoppeld."
+          }
+        }
+      }
+    },
+    "The sensor refused to connect. It may be in use by another phone or app. Open the CGM settings for details." : {
+      "comment" : "Alert body when the sensor refuses authentication",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De sensor weigerde verbinding te maken. Misschien wordt hij door een andere telefoon of app gebruikt. Open de CGM-instellingen voor meer informatie."
+          }
+        }
+      }
+    },
+    "The sensor rejected this phone's key." : {
+      "comment" : "Error description when a G7 sensor reports a key mismatch",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De sensor heeft de sleutel van deze telefoon geweigerd."
+          }
+        }
+      }
+    },
+    "This sensor does not match the pairing code entered." : {
+      "comment" : "Error description when a G7 sensor's challenge response does not match the pairing code",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze sensor past niet bij de ingevoerde koppelcode."
+          }
+        }
+      }
+    },
+    "Too many sign-in attempts; Dexcom Share has locked the account for a while." : {
+      "comment" : "Share error: max attempts",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Te veel inlogpogingen; Dexcom Share heeft het account tijdelijk geblokkeerd."
+          }
+        }
+      }
+    },
+    "United States" : {
+      "comment" : "Dexcom Share server region",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verenigde Staten"
+          }
+        }
+      }
+    },
+    "Your sensor has reached the end of its session. Readings continue for up to 12 more hours; replace it before then." : {
+      "comment" : "Alert body at nominal sensor expiry",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je sensor is aan het einde van zijn sessie. Er komen nog maximaal 12 uur metingen binnen; vervang hem voor die tijd."
+          }
+        }
+      }
+    },
+    "Your sensor has stopped working and is not sending readings. Remove it and start a new sensor. Check your glucose with a meter in the meantime." : {
+      "comment" : "Alert body for a failed sensor",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je sensor werkt niet meer en stuurt geen metingen. Verwijder hem en start een nieuwe sensor. Controleer je glucose in de tussentijd met een meter."
+          }
+        }
+      }
+    },
+    "Your sensor session ends in about 2 hours. Change your sensor soon to avoid a gap in readings." : {
+      "comment" : "Alert body 2 hours before sensor expiry",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je sensorsessie eindigt over ongeveer 2 uur. Vervang je sensor binnenkort om een gat in de metingen te voorkomen."
+          }
+        }
+      }
+    },
+    "Your sensor session ends in about a day. Have a new sensor ready." : {
+      "comment" : "Alert body 24 hours before sensor expiry",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je sensorsessie eindigt over ongeveer een dag. Houd een nieuwe sensor klaar."
+          }
+        }
+      }
+    },
+    "Your sensor session has ended and readings have stopped. Apply and pair a new sensor." : {
+      "comment" : "Alert body at the end of the grace period",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je sensorsessie is beëindigd en er komen geen metingen meer binnen. Breng een nieuwe sensor aan en koppel die."
           }
         }
       }
