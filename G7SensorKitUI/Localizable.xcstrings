@@ -309,10 +309,26 @@
       }
     },
     "%1$@ is now connected to the sensor directly. Readings arrive every 5 minutes after a %2$@ warm-up." : {
-      "comment" : "Body of the pairing success screen (1: appName, 2: warm-up duration, e.g. 27 minutes)"
+      "comment" : "Body of the pairing success screen (1: appName, 2: warm-up duration, e.g. 27 minutes)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ is nu rechtstreeks met de sensor verbonden. Na een opwarmtijd van %2$@ komen er elke 5 minuten metingen binnen."
+          }
+        }
+      }
     },
     "%1$@ is now connected to the sensor directly. Readings arrive every 5 minutes once the sensor has warmed up." : {
-      "comment" : "Body of the pairing success screen before the sensor reports its warm-up time (1: appName)"
+      "comment" : "Body of the pairing success screen before the sensor reports its warm-up time (1: appName)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ is nu rechtstreeks met de sensor verbonden. Zodra de sensor is opgewarmd, komen er elke 5 minuten metingen binnen."
+          }
+        }
+      }
     },
     "%1$@ is reading glucose through the Dexcom app's session, and can keep doing so. If you would rather not depend on the Dexcom app, pair the sensor directly instead: you will need the sensor's 4-digit pairing code, and the Dexcom app has to come off this phone first: delete it, or offload it under Settings, General, iPhone Storage. You can switch back later." : {
       "comment" : "Body of the settings notice offering to pair directly (1: appName)",
