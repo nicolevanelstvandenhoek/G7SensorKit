@@ -16,42 +16,43 @@ private class TestBluetoothManager: G7BluetoothManager {
     }
 }
 
-/// Records what the manager asks Loop to do with alerts. Called on the
-/// delegate queue, which these tests set to main.
+/// Records what the manager asks Loop to do with alerts. Main-actor bound,
+/// like the issuing calls themselves.
+@MainActor
 private final class RecordingDelegate: CGMManagerDelegate {
     var issued: [Alert] = []
     var retracted: [Alert.Identifier] = []
     /// Ordered record of what happened, for ordering assertions.
     var events: [String] = []
 
-    func issueAlert(_ alert: Alert) {
+    func issueAlert(_ alert: Alert) async {
         issued.append(alert)
         events.append("issue:" + alert.identifier.alertIdentifier)
     }
 
-    func retractAlert(identifier: Alert.Identifier) {
+    func retractAlert(identifier: Alert.Identifier) async {
         retracted.append(identifier)
         events.append("retract:" + identifier.alertIdentifier)
     }
 
-    func cgmManagerWantsDeletion(_ manager: CGMManager) {
+    func cgmManagerWantsDeletion(_ manager: CGMManager) async {
         events.append("delete")
     }
 
-    func doesIssuedAlertExist(identifier: Alert.Identifier, completion: @escaping (Swift.Result<Bool, Error>) -> Void) { completion(.success(false)) }
-    func lookupAllUnretracted(managerIdentifier: String, completion: @escaping (Swift.Result<[PersistedAlert], Error>) -> Void) { completion(.success([])) }
-    func lookupAllUnacknowledgedUnretracted(managerIdentifier: String, completion: @escaping (Swift.Result<[PersistedAlert], Error>) -> Void) { completion(.success([])) }
-    func recordRetractedAlert(_ alert: Alert, at date: Date) {}
-    func deviceManager(_ manager: DeviceManager, logEventForDeviceIdentifier deviceIdentifier: String?, type: DeviceLogEntryType, message: String, completion: ((Error?) -> Void)?) {}
-    func cgmManager(_ manager: CGMManager, didUpdate status: CGMManagerStatus) {}
-    func startDateToFilterNewData(for manager: CGMManager) -> Date? { nil }
-    func cgmManager(_ manager: CGMManager, hasNew readingResult: CGMReadingResult) {}
-    var cgmEvents: [PersistedCgmEvent] = []
-    func cgmManager(_ manager: CGMManager, hasNew events: [PersistedCgmEvent]) {
+    nonisolated func doesIssuedAlertExist(identifier: Alert.Identifier) async throws -> Bool { false }
+    nonisolated func lookupAllUnretracted(managerIdentifier: String) async throws -> [PersistedAlert] { [] }
+    nonisolated func lookupAllUnacknowledgedUnretracted(managerIdentifier: String) async throws -> [PersistedAlert] { [] }
+    nonisolated func recordRetractedAlert(_ alert: Alert, at date: Date) async throws {}
+    nonisolated func deviceManager(_ manager: DeviceManager, logEventForDeviceIdentifier deviceIdentifier: String?, type: DeviceLogEntryType, message: String, completion: ((Error?) -> Void)?) {}
+    nonisolated func cgmManager(_ manager: CGMManager, didUpdate status: CGMManagerStatus) {}
+    nonisolated func startDateToFilterNewData(for manager: CGMManager) -> Date? { nil }
+    nonisolated func cgmManager(_ manager: CGMManager, hasNew readingResult: CGMReadingResult) {}
+    nonisolated(unsafe) var cgmEvents: [PersistedCgmEvent] = []
+    nonisolated func cgmManager(_ manager: CGMManager, hasNew events: [PersistedCgmEvent]) {
         cgmEvents.append(contentsOf: events)
     }
-    func cgmManagerDidUpdateState(_ manager: CGMManager) {}
-    func credentialStoragePrefix(for manager: CGMManager) -> String { "test" }
+    nonisolated func cgmManagerDidUpdateState(_ manager: CGMManager) {}
+    nonisolated func credentialStoragePrefix(for manager: CGMManager) -> String { "test" }
 }
 
 class G7LifecycleAlertScheduleTests: XCTestCase {
@@ -128,6 +129,60 @@ class G7LifecycleAlertManagerTests: XCTestCase {
 
     private var okReading: G7GlucoseMessage {
         G7GlucoseMessage(data: Data(hexadecimalString: "4e00c35501002601000106008a00060187000f")!)!
+    }
+
+    /// `okReading` with another algorithm state, at `minutes` past its time so it isn't a duplicate.
+    private func reading(state: UInt8, minutes: UInt32) -> G7GlucoseMessage {
+        var data = okReading.data
+        data.replaceSubrange(2..<6, with: withUnsafeBytes(of: (0x0155c3 + minutes * 60).littleEndian, Array.init))
+        data[14] = state
+        return G7GlucoseMessage(data: data)!
+    }
+
+    private func sensorIssueManager() -> G7CGMManager {
+        var state = G7CGMManagerState()
+        state.sensorID = "DXCM99"
+        state.activatedAt = Date(timeIntervalSinceNow: -3600)
+        return makeManager(state: state)
+    }
+
+    func testSensorIssueIsRecordedOncePerState() {
+        let manager = sensorIssueManager()
+        for (minutes, state) in [(1, 2), (6, 2), (11, 6), (16, 18), (21, 18), (26, 2)] as [(UInt32, UInt8)] {
+            manager.sensor(manager.sensor, didRead: reading(state: state, minutes: minutes))
+        }
+        settle()
+
+        XCTAssertEqual(recorder.cgmEvents.map(\.type), [.sensorIssue, .sensorIssue, .sensorIssue])
+        XCTAssertEqual(recorder.cgmEvents.map(\.error?.code), ["warmup", "temporarySensorIssue", "warmup"])
+        XCTAssertEqual(recorder.cgmEvents.map(\.deviceIdentifier), ["DXCM99", "DXCM99", "DXCM99"])
+        XCTAssertFalse(recorder.cgmEvents.contains { $0.error?.isFatal == true })
+        XCTAssertEqual(manager.state.reportedSensorIssue, "warmup")
+    }
+
+    func testFailedSensorIssueIsFatalAndPrecedesTheSensorEnd() {
+        let manager = sensorIssueManager()
+        manager.sensor(manager.sensor, didRead: reading(state: 25, minutes: 1))
+        settle()
+
+        XCTAssertEqual(recorder.cgmEvents.first?.type, .sensorIssue)
+        XCTAssertEqual(recorder.cgmEvents.first?.error, CgmEventError(code: "sensorFailed", isFatal: true))
+        XCTAssertTrue(recorder.cgmEvents.dropFirst().contains { $0.type == .sensorEnd })
+    }
+
+    func testSensorIssueStartsOverForANewSensor() {
+        var state = G7CGMManagerState()
+        state.sensorID = "DXCM99"
+        state.activatedAt = Date(timeIntervalSinceNow: -3600)
+        state.sensorIssueReportedFor = "DXCM98"
+        state.reportedSensorIssue = "warmup"
+        let manager = makeManager(state: state)
+
+        manager.sensor(manager.sensor, didRead: reading(state: 2, minutes: 1))
+        settle()
+
+        XCTAssertEqual(recorder.cgmEvents.map(\.error?.code), ["warmup"])
+        XCTAssertEqual(manager.state.sensorIssueReportedFor, "DXCM99")
     }
 
     func testDiscoveringASensorSchedulesTheSessionTimedAlerts() {
@@ -223,6 +278,23 @@ class G7LifecycleAlertManagerTests: XCTestCase {
         for (index, event) in recorder.events.enumerated() where event.hasPrefix("retract:") {
             XCTAssertLessThan(index, deleteIndex ?? -1, "\(event) must land before Loop is told to delete")
         }
+    }
+
+    /// A manager passed its configuration schedules the same alerts, so deleting it retracts them.
+    func testDeletingAPassedConfigurationRetractsEveryAlert() {
+        var shared = G7CGMManagerState()
+        shared.sensorID = "DXCM99"
+        shared.activatedAt = Date()
+        var state = G7CGMManagerState.adopted(from: shared.rawValue)
+        state.lifecycleAlertsScheduledFor = "scheduled"
+        let manager = makeManager(state: state)
+
+        let done = expectation(description: "delete completed")
+        manager.delete { done.fulfill() }
+        wait(for: [done], timeout: 2)
+        settle()
+
+        XCTAssertEqual(Set(recorder.retracted.map(\.alertIdentifier)), Set(G7LifecycleAlert.allCases.map(\.rawValue)))
     }
 
     func testForgettingTheSensorRetractsEverything() {

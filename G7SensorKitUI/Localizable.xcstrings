@@ -131,601 +131,6 @@
         }
       }
     },
-    "%1$@ can send readings to Dexcom Share, so your followers keep seeing your glucose in the Dexcom Follow app without the Dexcom app on this phone." : {
-      "comment" : "Share sign-in explanation (1: appName)",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ kan metingen naar Dexcom Share sturen, zodat je volgers je glucose blijven zien in de Dexcom Follow-app zonder dat de Dexcom-app op deze telefoon staat."
-          }
-        }
-      }
-    },
-    "%1$@ is connected to the sensor directly and does not need the %2$@ app. A sensor works with only one app at a time, so it will take readings away for as long as it is on this phone. Delete it, or offload it under Settings, General, iPhone Storage." : {
-      "comment" : "Body of the settings warning when a Dexcom app is installed in direct mode (1: appName, 2: Dexcom app name)",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ is rechtstreeks met de sensor verbonden en heeft de %2$@-app niet nodig. Een sensor werkt maar met één app tegelijk, dus zolang die app op deze telefoon staat, neemt hij metingen weg. Verwijder hem, of ruim hem op via Instellingen, Algemeen, iPhone-opslag."
-          }
-        }
-      }
-    },
-    "%1$@ is reading glucose through the Dexcom app's session, and can keep doing so. If you would rather not depend on the Dexcom app, pair the sensor directly instead: you will need the sensor's 4-digit pairing code, and the Dexcom app has to come off this phone first: delete it, or offload it under Settings, General, iPhone Storage. You can switch back later." : {
-      "comment" : "Body of the settings notice offering to pair directly (1: appName)",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ leest de glucose via de sessie van de Dexcom-app en kan dat blijven doen. Wil je niet afhankelijk zijn van de Dexcom-app, koppel de sensor dan rechtstreeks: je hebt de 4-cijferige koppelcode van de sensor nodig, en de Dexcom-app moet eerst van deze telefoon af: verwijder hem, of ruim hem op via Instellingen, Algemeen, iPhone-opslag. Je kunt later terugschakelen."
-          }
-        }
-      }
-    },
-    "%1$@ will let go of the sensor and read through the Dexcom app's session again. Glucose and sensor alerts then come from the Dexcom app, and %1$@ stops uploading to Dexcom Share. You can pair directly again later with the sensor's code." : {
-      "comment" : "Message of the confirmation for switching back to the Dexcom app's session (1: appName)",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ laat de sensor los en leest weer via de sessie van de Dexcom-app. Glucosewaarden en sensormeldingen komen dan van de Dexcom-app, en %1$@ stopt met uploaden naar Dexcom Share. Je kunt later opnieuw rechtstreeks koppelen met de code van de sensor."
-          }
-        }
-      }
-    },
-    "A new follower receives an email from Dexcom with instructions to sign up for the Dexcom Follow app and accept the invitation. Swipe to remove a follower." : {
-      "comment" : "Followers list footer",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Een nieuwe volger krijgt een e-mail van Dexcom met uitleg om zich aan te melden voor de Dexcom Follow-app en de uitnodiging te accepteren. Veeg om een volger te verwijderen."
-          }
-        }
-      }
-    },
-    "Account" : {
-      "comment" : "Row label for the signed-in Dexcom Share account",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Account"
-          }
-        }
-      }
-    },
-    "Dexcom emails the invitation. The follower accepts it in the Dexcom Follow app." : {
-      "comment" : "Invite follower footer",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dexcom verstuurt de uitnodiging per e-mail. De volger accepteert die in de Dexcom Follow-app."
-          }
-        }
-      }
-    },
-    "Direct Connection Available (Optional)" : {
-      "comment" : "Title of the settings notice offering to pair directly",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rechtstreekse verbinding beschikbaar (optioneel)"
-          }
-        }
-      }
-    },
-    "Email address" : {
-      "comment" : "Invite follower field placeholder",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "E-mailadres"
-          }
-        }
-      }
-    },
-    "Follower's name" : {
-      "comment" : "Invite follower field placeholder",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Naam van de volger"
-          }
-        }
-      }
-    },
-    "Followers" : {
-      "comment" : "Row label opening the followers page",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Volgers"
-          }
-        }
-      }
-    },
-    "following" : {
-      "comment" : "Follower state: active",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "volgt"
-          }
-        }
-      }
-    },
-    "High" : {
-      "comment" : "Follower alert: high",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hoog"
-          }
-        }
-      }
-    },
-    "Install the Dexcom app, sign in, and add this sensor with its 4-digit pairing code%1$@. The sensor may take up to 15 minutes to accept the Dexcom app. %2$@ will show readings again once the Dexcom app is connected." : {
-      "comment" : "Instructions after switching back to the Dexcom app's session (1: the pairing code, if known; 2: appName)",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Installeer de Dexcom-app, log in en voeg deze sensor toe met de 4-cijferige koppelcode%1$@. Het kan tot 15 minuten duren voordat de sensor de Dexcom-app accepteert. %2$@ toont weer metingen zodra de Dexcom-app verbonden is."
-          }
-        }
-      }
-    },
-    "Invitation Failed" : {
-      "comment" : "Title of the alert when a follower invitation is refused",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uitnodigen mislukt"
-          }
-        }
-      }
-    },
-    "Invite" : {
-      "comment" : "Button title to send a follower invitation",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uitnodigen"
-          }
-        }
-      }
-    },
-    "Invite Follower" : {
-      "comment" : "Navigation title of the invite follower page",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Volger uitnodigen"
-          }
-        }
-      }
-    },
-    "invited" : {
-      "comment" : "Follower state: invitation pending",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "uitgenodigd"
-          }
-        }
-      }
-    },
-    "Last Upload" : {
-      "comment" : "Row label for the last Dexcom Share upload time",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Laatste upload"
-          }
-        }
-      }
-    },
-    "Low" : {
-      "comment" : "Follower alert: low",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Laag"
-          }
-        }
-      }
-    },
-    "No Data (1 hour)" : {
-      "comment" : "Follower alert: no data",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geen gegevens (1 uur)"
-          }
-        }
-      }
-    },
-    "No followers yet." : {
-      "comment" : "Followers list: empty",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nog geen volgers."
-          }
-        }
-      }
-    },
-    "Not Now" : {
-      "comment" : "Button title to skip Dexcom Share sign-in during setup",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Niet nu"
-          }
-        }
-      }
-    },
-    "Now Set Up the Dexcom App" : {
-      "comment" : "Title of the instructions after switching back to the Dexcom app's session",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stel nu de Dexcom-app in"
-          }
-        }
-      }
-    },
-    "Password" : {
-      "comment" : "Share sign-in field placeholder",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wachtwoord"
-          }
-        }
-      }
-    },
-    "Region" : {
-      "comment" : "Share sign-in server picker label",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Regio"
-          }
-        }
-      }
-    },
-    "Send readings to Dexcom Share so followers keep seeing your glucose in the Dexcom Follow app." : {
-      "comment" : "Dexcom Share section footnote when signed out",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stuur metingen naar Dexcom Share, zodat volgers je glucose blijven zien in de Dexcom Follow-app."
-          }
-        }
-      }
-    },
-    "Sign In" : {
-      "comment" : "Button title to sign in to Dexcom Share",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inloggen"
-          }
-        }
-      }
-    },
-    "Sign In to Dexcom Share" : {
-      "comment" : "Button title to sign in to Dexcom Share from settings",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inloggen bij Dexcom Share"
-          }
-        }
-      }
-    },
-    "Sign in with the Dexcom account that owns the sensor. The password is kept in the keychain on this phone only." : {
-      "comment" : "Share sign-in: which account, where the password goes",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Log in met het Dexcom-account waar de sensor bij hoort. Het wachtwoord wordt alleen op deze telefoon bewaard, in de sleutelhanger."
-          }
-        }
-      }
-    },
-    "Sign Out" : {
-      "comment" : "Button title to sign out of Dexcom Share",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uitloggen"
-          }
-        }
-      }
-    },
-    "Starting Alerts" : {
-      "comment" : "Section header for a new follower's initial alert settings",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Meldingen om mee te beginnen"
-          }
-        }
-      }
-    },
-    "Stop the %@ App" : {
-      "comment" : "Title of the settings warning when a Dexcom app is installed in direct mode (1: app name)",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stop de %@-app"
-          }
-        }
-      }
-    },
-    "Switch to the Dexcom App" : {
-      "comment" : "Confirmation button to switch back to the Dexcom app's session",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Overstappen naar de Dexcom-app"
-          }
-        }
-      }
-    },
-    "Upload Problem" : {
-      "comment" : "Title of the Dexcom Share upload error notice",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uploadprobleem"
-          }
-        }
-      }
-    },
-    "Urgent Low" : {
-      "comment" : "Follower alert: urgent low",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Urgent laag"
-          }
-        }
-      }
-    },
-    "Use with the Dexcom App Instead?" : {
-      "comment" : "Title of the confirmation for switching back to the Dexcom app's session",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toch de Dexcom-app gebruiken?"
-          }
-        }
-      }
-    },
-    "Username or email" : {
-      "comment" : "Share sign-in field placeholder",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gebruikersnaam of e-mailadres"
-          }
-        }
-      }
-    },
-    "Waiting for the first reading to upload." : {
-      "comment" : "Dexcom Share status before the first upload",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wacht op de eerste meting om te uploaden."
-          }
-        }
-      }
-    },
-    "Your name, as shown to them" : {
-      "comment" : "Invite follower field placeholder for the publisher's display name",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jouw naam, zoals zij die zien"
-          }
-        }
-      }
-    },
-    "– – –" : {
-      "comment" : "No glucose value representation (3 dashes for mg/dL)",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "---"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "---"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "---"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "---"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "nb-NO" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "– – –"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– –"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "– – –"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "---"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "---"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "– – –"
-          }
-        }
-      }
-    },
     "%1$@ can read G7 CGM data, but you must still use the Dexcom G7 App for pairing, calibration, and other sensor management." : {
       "comment" : "Descriptive text on G7StartupView (1: appName)",
       "extractionState" : "stale",
@@ -870,6 +275,17 @@
         }
       }
     },
+    "%1$@ can send readings to Dexcom Share, so your followers keep seeing your glucose in the Dexcom Follow app without the Dexcom app on this phone." : {
+      "comment" : "Share sign-in explanation (1: appName)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ kan metingen naar Dexcom Share sturen, zodat je volgers je glucose blijven zien in de Dexcom Follow-app zonder dat de Dexcom-app op deze telefoon staat."
+          }
+        }
+      }
+    },
     "%1$@ connects to your G7, ONE+ or Stelo sensor directly. Pair it with the 4-digit code printed on the sensor applicator, and the Dexcom app is not needed." : {
       "comment" : "Descriptive text on G7StartupView (1: appName)",
       "localizations" : {
@@ -881,13 +297,41 @@
         }
       }
     },
-    "%1$@ is now connected to the sensor directly. Readings arrive every 5 minutes; a new sensor needs about 30 minutes to warm up first." : {
-      "comment" : "Body of the pairing success screen (1: appName)",
+    "%1$@ is connected to the sensor directly and does not need the %2$@ app. A sensor works with only one app at a time, so it will take readings away for as long as it is on this phone. Delete it, or offload it under Settings, General, iPhone Storage." : {
+      "comment" : "Body of the settings warning when a Dexcom app is installed in direct mode (1: appName, 2: Dexcom app name)",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ is nu rechtstreeks met de sensor verbonden. Er komt elke 5 minuten een meting binnen. Een nieuwe sensor moet eerst ongeveer 30 minuten opwarmen."
+            "value" : "%1$@ is rechtstreeks met de sensor verbonden en heeft de %2$@-app niet nodig. Een sensor werkt maar met één app tegelijk, dus zolang die app op deze telefoon staat, neemt hij metingen weg. Verwijder hem, of ruim hem op via Instellingen, Algemeen, iPhone-opslag."
+          }
+        }
+      }
+    },
+    "%1$@ is now connected to the sensor directly. Readings arrive every 5 minutes after a %2$@ warm-up." : {
+      "comment" : "Body of the pairing success screen (1: appName, 2: warm-up duration, e.g. 27 minutes)"
+    },
+    "%1$@ is now connected to the sensor directly. Readings arrive every 5 minutes once the sensor has warmed up." : {
+      "comment" : "Body of the pairing success screen before the sensor reports its warm-up time (1: appName)"
+    },
+    "%1$@ is reading glucose through the Dexcom app's session, and can keep doing so. If you would rather not depend on the Dexcom app, pair the sensor directly instead: you will need the sensor's 4-digit pairing code, and the Dexcom app has to come off this phone first: delete it, or offload it under Settings, General, iPhone Storage. You can switch back later." : {
+      "comment" : "Body of the settings notice offering to pair directly (1: appName)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ leest de glucose via de sessie van de Dexcom-app en kan dat blijven doen. Wil je niet afhankelijk zijn van de Dexcom-app, koppel de sensor dan rechtstreeks: je hebt de 4-cijferige koppelcode van de sensor nodig, en de Dexcom-app moet eerst van deze telefoon af: verwijder hem, of ruim hem op via Instellingen, Algemeen, iPhone-opslag. Je kunt later terugschakelen."
+          }
+        }
+      }
+    },
+    "%1$@ will let go of the sensor and read through the Dexcom app's session again. Glucose and sensor alerts then come from the Dexcom app, and %1$@ stops uploading to Dexcom Share. You can pair directly again later with the sensor's code." : {
+      "comment" : "Message of the confirmation for switching back to the Dexcom app's session (1: appName)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ laat de sensor los en leest weer via de sessie van de Dexcom-app. Glucosewaarden en sensormeldingen komen dan van de Dexcom-app, en %1$@ stopt met uploaden naar Dexcom Share. Je kunt later opnieuw rechtstreeks koppelen met de code van de sensor."
           }
         }
       }
@@ -925,14 +369,14 @@
         }
       }
     },
-    "•" : {
-      "comment" : "A bullet point.",
-      "isCommentAutoGenerated" : true,
+    "%lld mg/dL" : {
+      "extractionState" : "manual",
+      "comment" : "Glucose value of a Dexcom Share follower reading",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "•"
+            "value" : "%lld mg/dL"
           }
         }
       }
@@ -970,6 +414,17 @@
         }
       }
     },
+    "A new follower receives an email from Dexcom with instructions to sign up for the Dexcom Follow app and accept the invitation. Swipe to remove a follower." : {
+      "comment" : "Followers list footer",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een nieuwe volger krijgt een e-mail van Dexcom met uitleg om zich aan te melden voor de Dexcom Follow-app en de uitnodiging te accepteren. Veeg om een volger te verwijderen."
+          }
+        }
+      }
+    },
     "A sensor works with only one app at a time. The %1$@ app has to come off this phone before %2$@ can pair with the sensor, and has to stay off." : {
       "comment" : "First paragraph of the Dexcom app warning (1: Dexcom app name, 2: appName)",
       "localizations" : {
@@ -977,6 +432,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een sensor werkt maar met één app tegelijk. De %1$@-app moet van deze telefoon af voordat %2$@ met de sensor kan koppelen, en moet er ook af blijven."
+          }
+        }
+      }
+    },
+    "APPLY OVERPATCH" : {
+      "comment" : "Section label above the overpatch steps",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OVERPLEISTER AANBRENGEN"
           }
         }
       }
@@ -1010,6 +476,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geaccepteerd om %@, de sensor past het nog toe"
+          }
+        }
+      }
+    },
+    "Account" : {
+      "comment" : "Row label for the signed-in Dexcom Share account",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account"
           }
         }
       }
@@ -1113,17 +590,6 @@
         }
       }
     },
-    "and" : {
-      "comment" : "Conjunction between the last two app names in a list",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "en"
-          }
-        }
-      }
-    },
     "Another app is using the camera, or the phone needs a moment. Try again shortly, or enter the 4 digits instead." : {
       "comment" : "Message of the alert shown when the camera cannot start scanning right now",
       "localizations" : {
@@ -1142,17 +608,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wat je verder in de Dexcom-app had ingesteld, zoals meldingen voor snel stijgen of dalen, wordt niet overgenomen."
-          }
-        }
-      }
-    },
-    "APPLY OVERPATCH" : {
-      "comment" : "Section label above the overpatch steps",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OVERPLEISTER AANBRENGEN"
           }
         }
       }
@@ -1492,6 +947,17 @@
         }
       }
     },
+    "Bluetooth Unavailable" : {
+      "comment" : "Pairing status while the radio is off or not permitted",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth niet beschikbaar"
+          }
+        }
+      }
+    },
     "Bluetooth access is not allowed. Turn it on for this app in Settings › Privacy & Security › Bluetooth." : {
       "comment" : "Pairing screen notice when the app lacks Bluetooth permission",
       "localizations" : {
@@ -1510,17 +976,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bluetooth staat uit. Zet het aan in Instellingen of het bedieningspaneel om te koppelen."
-          }
-        }
-      }
-    },
-    "Bluetooth Unavailable" : {
-      "comment" : "Pairing status while the radio is off or not permitted",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bluetooth niet beschikbaar"
           }
         }
       }
@@ -2451,28 +1906,6 @@
         }
       }
     },
-    "day" : {
-      "comment" : "Unit after a remaining-time number, singular",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "dag"
-          }
-        }
-      }
-    },
-    "days" : {
-      "comment" : "Abbreviated days unit after a remaining-time number\nUnit after a remaining-time number, plural",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "dagen"
-          }
-        }
-      }
-    },
     "Delete CGM" : {
       "comment" : "Button label for removing CGM",
       "localizations" : {
@@ -2810,6 +2243,17 @@
         }
       }
     },
+    "Dexcom emails the invitation. The follower accepts it in the Dexcom Follow app." : {
+      "comment" : "Invite follower footer",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom verstuurt de uitnodiging per e-mail. De volger accepteert die in de Dexcom Follow-app."
+          }
+        }
+      }
+    },
     "Difference" : {
       "comment" : "Calibration entry row: meter minus sensor",
       "localizations" : {
@@ -2828,6 +2272,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechtstreekse verbinding beschikbaar"
+          }
+        }
+      }
+    },
+    "Direct Connection Available (Optional)" : {
+      "comment" : "Title of the settings notice offering to pair directly",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechtstreekse verbinding beschikbaar (optioneel)"
           }
         }
       }
@@ -3014,6 +2469,17 @@
         }
       }
     },
+    "Email address" : {
+      "comment" : "Invite follower field placeholder",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-mailadres"
+          }
+        }
+      }
+    },
     "Enter Code" : {
       "comment" : "Navigation title of the screen where the pairing code is typed",
       "localizations" : {
@@ -3047,17 +2513,6 @@
         }
       }
     },
-    "Entered %@, waiting for the sensor's next connection" : {
-      "comment" : "Calibration outcome: pending (1: time entered)",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ingevoerd om %@, wacht op de volgende verbinding met de sensor"
-          }
-        }
-      }
-    },
     "Entered %1$@, refused by the sensor (status %2$d)" : {
       "comment" : "Calibration outcome: rejected (1: time entered, 2: status code)",
       "localizations" : {
@@ -3065,6 +2520,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ingevoerd om %1$@, geweigerd door de sensor (status %2$d)"
+          }
+        }
+      }
+    },
+    "Entered %@, waiting for the sensor's next connection" : {
+      "comment" : "Calibration outcome: pending (1: time entered)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingevoerd om %@, wacht op de volgende verbinding met de sensor"
           }
         }
       }
@@ -3087,6 +2553,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Firmware"
+          }
+        }
+      }
+    },
+    "Follower's name" : {
+      "comment" : "Invite follower field placeholder",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naam van de volger"
+          }
+        }
+      }
+    },
+    "Followers" : {
+      "comment" : "Row label opening the followers page",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volgers"
           }
         }
       }
@@ -3568,17 +3056,6 @@
         }
       }
     },
-    "Hardware Version" : {
-      "comment" : "Row label for the sensor's hardware version",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hardwareversie"
-          }
-        }
-      }
-    },
     "HIGH" : {
       "comment" : "String displayed instead of a glucose value above the CGM range",
       "localizations" : {
@@ -3722,6 +3199,28 @@
         }
       }
     },
+    "Hardware Version" : {
+      "comment" : "Row label for the sensor's hardware version",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hardwareversie"
+          }
+        }
+      }
+    },
+    "High" : {
+      "comment" : "Follower alert: high",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoog"
+          }
+        }
+      }
+    },
     "High, low and urgent low glucose alerts are issued by %1$@ according to its own alert settings. Review them so they match what you had in the Dexcom app." : {
       "comment" : "Glucose alerts paragraph of the alerts hand-off page (1: appName)",
       "localizations" : {
@@ -3766,28 +3265,6 @@
         }
       }
     },
-    "hour" : {
-      "comment" : "Unit after a remaining-time number, singular",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "uur"
-          }
-        }
-      }
-    },
-    "hours" : {
-      "comment" : "Unit after a remaining-time number, plural",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "uur"
-          }
-        }
-      }
-    },
     "How to Apply a Sensor" : {
       "comment" : "Button title opening the step-by-step application guide\nNavigation title of the step-by-step application guide",
       "localizations" : {
@@ -3799,17 +3276,6 @@
         }
       }
     },
-    "hr" : {
-      "comment" : "Abbreviated hours unit after a remaining-time number\nUnit after the hours-since-last-reading number",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "u"
-          }
-        }
-      }
-    },
     "I've Removed It" : {
       "comment" : "Button title to confirm the Dexcom app was deleted or offloaded",
       "localizations" : {
@@ -3817,6 +3283,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ik heb hem verwijderd"
+          }
+        }
+      }
+    },
+    "INSERT SENSOR" : {
+      "comment" : "Section label above the insert-sensor steps",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SENSOR INBRENGEN"
           }
         }
       }
@@ -3887,13 +3364,46 @@
         }
       }
     },
-    "INSERT SENSOR" : {
-      "comment" : "Section label above the insert-sensor steps",
+    "Install the Dexcom app, sign in, and add this sensor with its 4-digit pairing code%1$@. The sensor may take up to 15 minutes to accept the Dexcom app. %2$@ will show readings again once the Dexcom app is connected." : {
+      "comment" : "Instructions after switching back to the Dexcom app's session (1: the pairing code, if known; 2: appName)",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SENSOR INBRENGEN"
+            "value" : "Installeer de Dexcom-app, log in en voeg deze sensor toe met de 4-cijferige koppelcode%1$@. Het kan tot 15 minuten duren voordat de sensor de Dexcom-app accepteert. %2$@ toont weer metingen zodra de Dexcom-app verbonden is."
+          }
+        }
+      }
+    },
+    "Invitation Failed" : {
+      "comment" : "Title of the alert when a follower invitation is refused",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uitnodigen mislukt"
+          }
+        }
+      }
+    },
+    "Invite" : {
+      "comment" : "Button title to send a follower invitation",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uitnodigen"
+          }
+        }
+      }
+    },
+    "Invite Follower" : {
+      "comment" : "Navigation title of the invite follower page",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volger uitnodigen"
           }
         }
       }
@@ -3938,6 +3448,149 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Houd de pleister de eerste 12 uur droog, dan blijft hij langer zitten."
+          }
+        }
+      }
+    },
+    "LOW" : {
+      "comment" : "String displayed instead of a glucose value below the CGM range",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منخفض"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LAV"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NIEDRIG"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BAJO"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MATALA"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BAS"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נמוך"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LOW"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASSO"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LAV"
+          }
+        },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LAVT"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LAAG"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NISKI"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "LOW"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LOW"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HIPO"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "НИЗКИЙ"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NÍZKA"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LÅGT"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DÜŞÜK"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "НИЗЬКИЙ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "THẤP"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "低"
           }
         }
       }
@@ -4113,17 +3766,6 @@
         }
       }
     },
-    "Last reading" : {
-      "comment" : "Label above the last reading row on the sensor card",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Laatste meting"
-          }
-        }
-      }
-    },
     "Last Reading" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -4273,6 +3915,28 @@
         }
       }
     },
+    "Last Upload" : {
+      "comment" : "Row label for the last Dexcom Share upload time",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laatste upload"
+          }
+        }
+      }
+    },
+    "Last reading" : {
+      "comment" : "Label above the last reading row on the sensor card",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laatste meting"
+          }
+        }
+      }
+    },
     "Lift the applicator straight off. The sensor stays on your skin." : {
       "comment" : "Apply step 5: remove the applicator",
       "localizations" : {
@@ -4301,145 +3965,13 @@
         }
       }
     },
-    "LOW" : {
-      "comment" : "String displayed instead of a glucose value below the CGM range",
+    "Low" : {
+      "comment" : "Follower alert: low",
       "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "منخفض"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LAV"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NIEDRIG"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BAJO"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "MATALA"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BAS"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "נמוך"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LOW"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BASSO"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LAV"
-          }
-        },
-        "nb-NO" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LAVT"
-          }
-        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "LAAG"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NISKI"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "LOW"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LOW"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HIPO"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "НИЗКИЙ"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NÍZKA"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LÅGT"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DÜŞÜK"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "НИЗЬКИЙ"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "THẤP"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "低"
+            "value" : "Laag"
           }
         }
       }
@@ -4462,28 +3994,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meterwaarde"
-          }
-        }
-      }
-    },
-    "min" : {
-      "comment" : "Abbreviated minutes unit after a remaining-time number\nUnit after a remaining-time number, singular\nUnit after the minutes-since-last-reading number",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "min"
-          }
-        }
-      }
-    },
-    "mins" : {
-      "comment" : "Unit after a remaining-time number, plural",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "min"
           }
         }
       }
@@ -4671,6 +4181,28 @@
         }
       }
     },
+    "No Data (1 hour)" : {
+      "comment" : "Follower alert: no data",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen gegevens (1 uur)"
+          }
+        }
+      }
+    },
+    "No followers yet." : {
+      "comment" : "Followers list: empty",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nog geen volgers."
+          }
+        }
+      }
+    },
     "No sensor paired" : {
       "comment" : "Sensor card label when the CGM has been added but no sensor paired",
       "localizations" : {
@@ -4689,6 +4221,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen"
+          }
+        }
+      }
+    },
+    "Not Now" : {
+      "comment" : "Button title to skip Dexcom Share sign-in during setup",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niet nu"
           }
         }
       }
@@ -4722,6 +4265,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Berichtgeving"
+          }
+        }
+      }
+    },
+    "Now Set Up the Dexcom App" : {
+      "comment" : "Title of the instructions after switching back to the Dexcom app's session",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stel nu de Dexcom-app in"
+          }
+        }
+      }
+    },
+    "OPTION %d" : {
+      "comment" : "Label numbering a way to stop the Dexcom app (1: number)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OPTIE %d"
+          }
+        }
+      }
+    },
+    "OR" : {
+      "comment" : "Separator between the ways to stop the Dexcom app",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OF"
           }
         }
       }
@@ -4919,28 +4495,6 @@
         }
       }
     },
-    "OPTION %d" : {
-      "comment" : "Label numbering a way to stop the Dexcom app (1: number)",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OPTIE %d"
-          }
-        }
-      }
-    },
-    "OR" : {
-      "comment" : "Separator between the ways to stop the Dexcom app",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OF"
-          }
-        }
-      }
-    },
     "Pair\nSensor" : {
       "comment" : "G7 Status highlight text when the CGM has been added but no sensor paired",
       "localizations" : {
@@ -4948,17 +4502,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koppel\nsensor"
-          }
-        }
-      }
-    },
-    "Pair a sensor to start receiving glucose readings." : {
-      "comment" : "Sensor card message when the CGM has been added but no sensor paired",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Koppel een sensor om glucosemetingen te ontvangen."
           }
         }
       }
@@ -5003,6 +4546,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koppel sensor rechtstreeks"
+          }
+        }
+      }
+    },
+    "Pair a sensor to start receiving glucose readings." : {
+      "comment" : "Sensor card message when the CGM has been added but no sensor paired",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koppel een sensor om glucosemetingen te ontvangen."
           }
         }
       }
@@ -5062,6 +4616,17 @@
         }
       }
     },
+    "Password" : {
+      "comment" : "Share sign-in field placeholder",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wachtwoord"
+          }
+        }
+      }
+    },
     "Peel off both clear liners, one at a time, without touching the white adhesive." : {
       "comment" : "Overpatch step A",
       "localizations" : {
@@ -5102,6 +4667,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trek aan het lipje om de gekleurde bovenlaag te verwijderen. De overpleister blijft zitten."
+          }
+        }
+      }
+    },
+    "Region" : {
+      "comment" : "Share sign-in server picker label",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regio"
           }
         }
       }
@@ -5800,6 +5376,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensor zoeken…"
+          }
+        }
+      }
+    },
+    "Send readings to Dexcom Share so followers keep seeing your glucose in the Dexcom Follow app." : {
+      "comment" : "Dexcom Share section footnote when signed out",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stuur metingen naar Dexcom Share, zodat volgers je glucose blijven zien in de Dexcom Follow-app."
           }
         }
       }
@@ -6547,6 +6134,221 @@
         }
       }
     },
+    "Sensor Failed" : {
+      "comment" : "Title of the failure notice on the previous sensor page",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor defect"
+          }
+        }
+      }
+    },
+    "Sensor Is On, Continue" : {
+      "comment" : "Button title to proceed from the apply-sensor screen to code entry",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor zit erop, ga verder"
+          }
+        }
+      }
+    },
+    "Sensor Paired" : {
+      "comment" : "Title of the pairing success screen",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor gekoppeld"
+          }
+        }
+      }
+    },
+    "Sensor Reading" : {
+      "comment" : "Calibration entry row: the sensor's current value",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorwaarde"
+          }
+        }
+      }
+    },
+    "Sensor Refused Connection" : {
+      "comment" : "Title of the settings warning after the sensor refused authentication",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor weigerde verbinding"
+          }
+        }
+      }
+    },
+    "Sensor Start" : {
+      "comment" : "title for g7 settings row showing sensor start time",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ابدأ الحساس"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start sensor"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor gestartet"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor comienza"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor Start"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarrage du capteur"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "התחלת חיישן"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor Start"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inizializzazione sensore"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "센서 시작"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstart"
+          }
+        },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstart"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstart"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor uruchomiony"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor Start"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor Start"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pornire Senzor"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сенсор запущен"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spustenie senzora"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstart"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensör başlangıcı"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старт Сенсора моніторингу"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khởi động Cảm biến"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor Start"
+          }
+        }
+      }
+    },
+    "Sensor Warmup" : {
+      "comment" : "Last reading row text during warmup",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor warmt op"
+          }
+        }
+      }
+    },
     "Sensor expired" : {
       "comment" : "G7 Progress bar label when sensor expired\nSensor card label during the grace period",
       "localizations" : {
@@ -7027,221 +6829,6 @@
         }
       }
     },
-    "Sensor Failed" : {
-      "comment" : "Title of the failure notice on the previous sensor page",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor defect"
-          }
-        }
-      }
-    },
-    "Sensor Is On, Continue" : {
-      "comment" : "Button title to proceed from the apply-sensor screen to code entry",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor zit erop, ga verder"
-          }
-        }
-      }
-    },
-    "Sensor Paired" : {
-      "comment" : "Title of the pairing success screen",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor gekoppeld"
-          }
-        }
-      }
-    },
-    "Sensor Reading" : {
-      "comment" : "Calibration entry row: the sensor's current value",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorwaarde"
-          }
-        }
-      }
-    },
-    "Sensor Refused Connection" : {
-      "comment" : "Title of the settings warning after the sensor refused authentication",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor weigerde verbinding"
-          }
-        }
-      }
-    },
-    "Sensor Start" : {
-      "comment" : "title for g7 settings row showing sensor start time",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ابدأ الحساس"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start sensor"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor gestartet"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor comienza"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor Start"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Démarrage du capteur"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "התחלת חיישן"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor Start"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inizializzazione sensore"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "센서 시작"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstart"
-          }
-        },
-        "nb-NO" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstart"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstart"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor uruchomiony"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Sensor Start"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor Start"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pornire Senzor"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сенсор запущен"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spustenie senzora"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstart"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensör başlangıcı"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Старт Сенсора моніторингу"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Khởi động Cảm biến"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor Start"
-          }
-        }
-      }
-    },
-    "Sensor Warmup" : {
-      "comment" : "Last reading row text during warmup",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor warmt op"
-          }
-        }
-      }
-    },
     "Serial Number" : {
       "comment" : "title for g7 settings row showing the sensor serial number",
       "localizations" : {
@@ -7260,6 +6847,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sessie"
+          }
+        }
+      }
+    },
+    "Session Length" : {
+      "comment" : "Row label for the sensor's session length",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessieduur"
           }
         }
       }
@@ -7286,13 +6884,46 @@
         }
       }
     },
-    "Session Length" : {
-      "comment" : "Row label for the sensor's session length",
+    "Sign In" : {
+      "comment" : "Button title to sign in to Dexcom Share",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sessieduur"
+            "value" : "Inloggen"
+          }
+        }
+      }
+    },
+    "Sign In to Dexcom Share" : {
+      "comment" : "Button title to sign in to Dexcom Share from settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inloggen bij Dexcom Share"
+          }
+        }
+      }
+    },
+    "Sign Out" : {
+      "comment" : "Button title to sign out of Dexcom Share",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uitloggen"
+          }
+        }
+      }
+    },
+    "Sign in with the Dexcom account that owns the sensor. The password is kept in the keychain on this phone only." : {
+      "comment" : "Share sign-in: which account, where the password goes",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in met het Dexcom-account waar de sensor bij hoort. Het wachtwoord wordt alleen op deze telefoon bewaard, in de sleutelhanger."
           }
         }
       }
@@ -7473,6 +7104,17 @@
         }
       }
     },
+    "Starting Alerts" : {
+      "comment" : "Section header for a new follower's initial alert settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meldingen om mee te beginnen"
+          }
+        }
+      }
+    },
     "Stay clear of loose skin, scars, tattoos, your waistband, and anywhere you inject insulin or wear a pump." : {
       "comment" : "Apply step 1 note: sites to avoid",
       "localizations" : {
@@ -7502,6 +7144,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stap 7%@ van 7"
+          }
+        }
+      }
+    },
+    "Stop the %@ App" : {
+      "comment" : "Title of the settings warning when a Dexcom app is installed in direct mode (1: app name)",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop de %@-app"
+          }
+        }
+      }
+    },
+    "Switch to the Dexcom App" : {
+      "comment" : "Confirmation button to switch back to the Dexcom app's session",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overstappen naar de Dexcom-app"
           }
         }
       }
@@ -7539,28 +7203,6 @@
         }
       }
     },
-    "The barcode on the sensor applicator holds the 4-digit pairing code and the sensor's serial number." : {
-      "comment" : "First line of the scan screen",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "De barcode op de applicator bevat de 4-cijferige koppelcode en het serienummer van de sensor."
-          }
-        }
-      }
-    },
-    "The box holds the applicator and an overpatch. The applicator inserts the sensor in one press; keep it afterwards, because the pairing code is printed on it." : {
-      "comment" : "Apply-sensor screen: box contents and the code",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In de doos zitten de applicator en een overpleister. De applicator brengt de sensor in één keer in. Bewaar hem daarna, want de koppelcode staat erop."
-          }
-        }
-      }
-    },
     "The G7 integration raises these itself and delivers them as %1$@ notifications:" : {
       "comment" : "Sensor alerts paragraph of the alerts hand-off page (1: appName)",
       "localizations" : {
@@ -7579,6 +7221,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De G7 is in de fabriek gekalibreerd en hoeft niet gekalibreerd te worden. Met kalibreren zeg je de sensor dat hij je meter meer moet vertrouwen dan zichzelf. Doe het dus alleen als er al uren een klein, constant verschil is en je dat met meer dan één vingerprik hebt bevestigd."
+          }
+        }
+      }
+    },
+    "The barcode on the sensor applicator holds the 4-digit pairing code and the sensor's serial number." : {
+      "comment" : "First line of the scan screen",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De barcode op de applicator bevat de 4-cijferige koppelcode en het serienummer van de sensor."
+          }
+        }
+      }
+    },
+    "The box holds the applicator and an overpatch. The applicator inserts the sensor in one press; keep it afterwards, because the pairing code is printed on it." : {
+      "comment" : "Apply-sensor screen: box contents and the code",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In de doos zitten de applicator en een overpleister. De applicator brengt de sensor in één keer in. Bewaar hem daarna, want de koppelcode staat erop."
           }
         }
       }
@@ -8021,6 +7685,17 @@
         }
       }
     },
+    "Upload Problem" : {
+      "comment" : "Title of the Dexcom Share upload error notice",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploadprobleem"
+          }
+        }
+      }
+    },
     "Upload Readings" : {
       "comment" : "title for g7 config settings to upload readings",
       "extractionState" : "stale",
@@ -8171,6 +7846,17 @@
         }
       }
     },
+    "Urgent Low" : {
+      "comment" : "Follower alert: urgent low",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urgent laag"
+          }
+        }
+      }
+    },
     "Use with the Dexcom App Instead" : {
       "comment" : "Button title to set up in eavesdropping mode alongside the Dexcom app",
       "localizations" : {
@@ -8178,6 +7864,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gebruik toch met de Dexcom-app"
+          }
+        }
+      }
+    },
+    "Use with the Dexcom App Instead?" : {
+      "comment" : "Title of the confirmation for switching back to the Dexcom app's session",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toch de Dexcom-app gebruiken?"
+          }
+        }
+      }
+    },
+    "Username or email" : {
+      "comment" : "Share sign-in field placeholder",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruikersnaam of e-mailadres"
           }
         }
       }
@@ -8211,6 +7919,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wacht op volgende meting"
+          }
+        }
+      }
+    },
+    "Waiting for the first reading to upload." : {
+      "comment" : "Dexcom Share status before the first upload",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wacht op de eerste meting om te uploaden."
           }
         }
       }
@@ -8468,6 +8187,17 @@
         }
       }
     },
+    "Your name, as shown to them" : {
+      "comment" : "Invite follower field placeholder for the publisher's display name",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jouw naam, zoals zij die zien"
+          }
+        }
+      }
+    },
     "Your sensor has reached the end of its session. Readings continue for up to 12 hours; replace your sensor before then." : {
       "comment" : "Sensor card message during the grace period",
       "localizations" : {
@@ -8501,14 +8231,279 @@
         }
       }
     },
-    "%lld mg/dL" : {
-      "extractionState" : "manual",
-      "comment" : "Glucose value of a Dexcom Share follower reading",
+    "and" : {
+      "comment" : "Conjunction between the last two app names in a list",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld mg/dL"
+            "value" : "en"
+          }
+        }
+      }
+    },
+    "day" : {
+      "comment" : "Unit after a remaining-time number, singular",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dag"
+          }
+        }
+      }
+    },
+    "days" : {
+      "comment" : "Abbreviated days unit after a remaining-time number\nUnit after a remaining-time number, plural",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dagen"
+          }
+        }
+      }
+    },
+    "following" : {
+      "comment" : "Follower state: active",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "volgt"
+          }
+        }
+      }
+    },
+    "hour" : {
+      "comment" : "Unit after a remaining-time number, singular",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "uur"
+          }
+        }
+      }
+    },
+    "hours" : {
+      "comment" : "Unit after a remaining-time number, plural",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "uur"
+          }
+        }
+      }
+    },
+    "hr" : {
+      "comment" : "Abbreviated hours unit after a remaining-time number\nUnit after the hours-since-last-reading number",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "u"
+          }
+        }
+      }
+    },
+    "invited" : {
+      "comment" : "Follower state: invitation pending",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "uitgenodigd"
+          }
+        }
+      }
+    },
+    "min" : {
+      "comment" : "Abbreviated minutes unit after a remaining-time number\nUnit after a remaining-time number, singular\nUnit after the minutes-since-last-reading number",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "min"
+          }
+        }
+      }
+    },
+    "mins" : {
+      "comment" : "Unit after a remaining-time number, plural",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "min"
+          }
+        }
+      }
+    },
+    "– – –" : {
+      "comment" : "No glucose value representation (3 dashes for mg/dL)",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "---"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "---"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "---"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "---"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "– – –"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– –"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "– – –"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "---"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "---"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "– – –"
+          }
+        }
+      }
+    },
+    "•" : {
+      "comment" : "A bullet point.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "•"
           }
         }
       }

@@ -22,6 +22,10 @@ public protocol G7StateObserver: AnyObject {
 public class G7CGMManager: CGMManager {
     public var inSignalLoss: Bool = false
     
+    public var isInoperable: Bool {
+        cgmManagerStatus.isInoperable
+    }
+    
     private let log = OSLog(category: "G7CGMManager")
 
     /// How long to wait for communication to resume after a suspected session end
@@ -73,6 +77,8 @@ public class G7CGMManager: CGMManager {
     /// build may have left scheduled. Done on the first reading, when the
     /// delegate is known to be set.
     private var didRetractLegacySignalLoss = false
+    /// The unfinished-pairing alert is up; retracted at the next reading.
+    private var pairingUnfinishedAlertPending = false
 
     /// Sends readings to Dexcom Share while an account is signed in.
     private var shareUploader: G7ShareUploader?
@@ -101,8 +107,9 @@ public class G7CGMManager: CGMManager {
 
     public var providesBLEHeartbeat: Bool = true
 
+    // Only the Dexcom app writes to HealthKit while we eavesdrop on its session
     public var managedDataInterval: TimeInterval? {
-        return .hours(3)
+        return state.sessionMode == .eavesdropping ? .hours(3) : nil
     }
 
     public var shouldSyncToRemoteService: Bool {
@@ -239,6 +246,7 @@ public class G7CGMManager: CGMManager {
     public convenience init(sessionMode: G7SessionMode, displayType: G7DisplayType = .phone) {
         var state = G7CGMManagerState()
         state.sessionMode = sessionMode
+        state.displayType = displayType
         self.init(state: state, sensor: G7Sensor(mode: sessionMode, credentials: state.sensorCredentials, displayType: displayType))
     }
 
@@ -254,6 +262,7 @@ public class G7CGMManager: CGMManager {
         state.peripheralIdentifier = peripheralIdentifier
         state.sharedKey = sharedKey
         state.pairedAt = Date()
+        state.displayType = displayType
 
         let sensor: G7Sensor
         if let handoff = handoff {
@@ -270,9 +279,35 @@ public class G7CGMManager: CGMManager {
 
     public required convenience init?(rawState: RawStateValue) {
         let state = G7CGMManagerState(rawValue: rawState)
-        self.init(state: state, sensor: G7Sensor(mode: state.sessionMode, credentials: state.sensorCredentials))
+        self.init(state: state, sensor: G7Sensor(mode: state.sessionMode, credentials: state.sensorCredentials, displayType: state.displayType))
+        sensor.needsVersionInfo = state.extendedVersion == nil || state.transmitterVersion == nil
+        if let latest = state.latestReadingTimestamp {
+            sensor.noteLatestReading(at: latest)
+        }
+    }
+
+    /// DeviceConfigurationSharing: read the sensor another controller follows, directly.
+    public required convenience init?(adopting configuration: SharedDeviceConfiguration, localState: [String: Any]?) {
+        let state = G7CGMManagerState.adopted(from: configuration.state)
+        self.init(adopted: state, sensor: G7Sensor(mode: .direct, credentials: state.sensorCredentials,
+                                                   displayType: state.displayType))
+    }
+
+    /// Asks the sensor for its version, as a restored manager does, so the session length is known.
+    convenience init(adopted state: G7CGMManagerState, sensor: G7Sensor) {
+        self.init(state: state, sensor: sensor)
         sensor.needsVersionInfo = state.extendedVersion == nil || state.transmitterVersion == nil
     }
+
+    /// Posted on the main queue when `needsCodeForSensor` or `isSearchingForSensor` changes; the
+    /// object is the manager.
+    public static let statusDidChange = Notification.Name("G7CGMManagerStatusDidChange")
+
+    /// The sensor a direct connection would reach without a pairing code or key; nil once one exists.
+    public var needsCodeForSensor: String? { sensor.needsCodeForSensor }
+
+    /// Scanning for a sensor this manager has never connected to.
+    public var isSearchingForSensor: Bool { sensor.isSearchingForSensor }
 
     /// Which of the sensor's display slots this app takes. A phone by
     /// default; a watch app takes its own, alongside the phone's.
@@ -302,6 +337,37 @@ public class G7CGMManager: CGMManager {
         state.sessionMode
     }
 
+    // MARK: - The pairing code another controller needs (entered here; travels in the export)
+
+    public enum WatchPairingCodeStatus: Equatable { case noSensor, needsCode, saved }
+
+    /// The Read on Apple Watch setting: the host passes this sensor to its watch only while it is on.
+    public var isWatchDirectReadEnabled: Bool { state.watchDirectReadEnabled }
+
+    public func setWatchDirectReadEnabled(_ enabled: Bool) {
+        guard enabled != state.watchDirectReadEnabled else { return }
+        mutateState { $0.watchDirectReadEnabled = enabled }
+        logDeviceCommunication("direct-read: Read on Apple Watch turned \(enabled ? "on" : "off")", type: .connection)
+    }
+
+    /// The current sensor's code state, for the settings row. The phone keeps its own session
+    /// mode; the code is what the watch needs to read this sensor when the phone is away.
+    public var watchPairingCodeStatus: WatchPairingCodeStatus {
+        guard state.sensorID != nil else { return .noSensor }
+        return state.pairingCode == nil ? .needsCode : .saved
+    }
+
+    /// The user entered the current sensor's 4-digit pairing code for the watch. Returns false
+    /// if it is not 4 digits.
+    @discardableResult
+    public func setWatchPairingCode(_ code: String) -> Bool {
+        let digits = String(code.filter { $0.isNumber }.prefix(4))
+        guard G7PairingService.isValidPairingCode(digits) else { return false }
+        mutateState { $0.pairingCode = digits }
+        logDeviceCommunication("direct-read: pairing code saved for the watch (\(state.sensorID ?? "sensor"))", type: .connection)
+        return true
+    }
+
     /// Adopts the result of a pairing run, switching to direct mode.
     ///
     /// Used both to upgrade an eavesdropping session and to re-pair after
@@ -320,7 +386,7 @@ public class G7CGMManager: CGMManager {
     /// keeps its identity, readings and alerts and only the mode changes.
     /// Otherwise the current sensor is closed out and kept as the previous
     /// one, and the new sensor's identity is learned from its first reading.
-    public func applyPairingResult(pairingCode: String, peripheralIdentifier: UUID?, sharedKey: Data?, handoff: G7PairingHandoff? = nil, sensorName: String? = nil) {
+    public func applyPairingResult(pairingCode: String, peripheralIdentifier: UUID?, sharedKey: Data?, authenticity: G7SensorAuthenticity = .unverified, handoff: G7PairingHandoff? = nil, sensorName: String? = nil) {
         let pairedName = sensorName ?? handoff?.peripheralManager.peripheral.name
         let isSameSensor: Bool
         if let pairedName = pairedName, let currentID = state.sensorID, G7Sensor.isSensorName(pairedName) {
@@ -348,6 +414,8 @@ public class G7CGMManager: CGMManager {
             state.pairingCode = pairingCode
             state.peripheralIdentifier = peripheralIdentifier
             state.sharedKey = sharedKey
+            state.sensorAuthenticity = authenticity
+            state.simulatedSensorWarningSuppressed = false
             state.lastAuthenticationFailure = nil
             state.lastAuthenticationFailureDate = nil
             if !isSameSensor {
@@ -432,14 +500,12 @@ public class G7CGMManager: CGMManager {
         return lines.joined(separator: "\n")
     }
 
-    public func acknowledgeAlert(alertIdentifier _: Alert.AlertIdentifier, completion: @escaping (Error?) -> Void) {
-        completion(nil)
-    }
+    public func acknowledgeAlert(alertIdentifier: Alert.AlertIdentifier) async throws { }
 
     public func getSoundBaseURL() -> URL? { return nil }
     public func getSounds() -> [Alert.Sound] { return [] }
 
-    public static let pluginIdentifier: String = "G7CGMManager"
+    public let pluginIdentifier: String = "G7CGMManager"
 
     /// The model of the sensor in use, once one is known. G7 until then; the
     /// three models share one plugin and one protocol.
@@ -455,6 +521,12 @@ public class G7CGMManager: CGMManager {
 
     public var appURL: URL? {
         return nil
+    }
+
+    /// For a wake that is not the sensor's own (on the watch, each context from the phone): makes sure
+    /// a connect is standing or a scan running. No effect on the phone.
+    public func recheckAcquisition() {
+        sensor.recheckAcquisition()
     }
 
     public func scanForNewSensor() {
@@ -486,16 +558,27 @@ public class G7CGMManager: CGMManager {
     }
 
     private var device: HKDevice? {
+        // A simulated sensor must be unmistakable wherever a reading lands —
+        // HealthKit and anything syncing from it, like Nightscout — so the
+        // emulator is never taken for a real Dexcom. We mark the manufacturer
+        // and model, and drop Dexcom's real UDI rather than claim it.
+        let simulated = state.sensorAuthenticity == .simulated
         return HKDevice(
             name: state.sensorID ?? "Unknown",
-            manufacturer: "Dexcom",
-            model: sensorModel.displayName,
+            manufacturer: simulated ? "g7sim (Simulator)" : "Dexcom",
+            model: simulated ? "\(sensorModel.displayName) Simulator" : sensorModel.displayName,
             hardwareVersion: nil,
             firmwareVersion: state.transmitterVersion?.firmwareVersion,
             softwareVersion: "CGMBLEKit" + String(G7SensorKitVersionNumber),
             localIdentifier: nil,
-            udiDeviceIdentifier: "00386270001863"
+            udiDeviceIdentifier: simulated ? nil : "00386270001863"
         )
+    }
+
+    /// Hide the simulated-sensor settings warning. For development
+    /// screenshots; the per-reading HealthKit metadata stays marked.
+    public func suppressSimulatedSensorWarning() {
+        mutateState { $0.simulatedSensorWarningSuppressed = true }
     }
 
     public func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
@@ -522,6 +605,14 @@ extension G7CGMManager {
     /// `delete` only notifies, so the notification is re-issued here.
     public func delete(completion: @escaping () -> Void) {
         cancelSuspectedSessionEndScan()
+        // A manager passed its configuration lets go of the sensor and nothing more: the sensor's
+        // lifecycle and records belong to the controller that passed it.
+        guard !state.configuredByAnotherController else {
+            sensor.stopScanning()
+            retractAllLifecycleAlerts()
+            notifyDelegateOfDeletion(completion: completion)
+            return
+        }
         signOutOfShare()
         sensor.stopScanning()
         retractAllLifecycleAlerts()
@@ -595,6 +686,37 @@ extension G7CGMManager {
         }
     }
 
+    /// Records a `sensorIssue` when the reading's state lacks reliable glucose and differs from
+    /// the last one recorded for this sensor. A reliable reading clears it, so a state that
+    /// returns after recovery is recorded again.
+    private func recordSensorIssueIfChanged(_ message: G7GlucoseMessage) {
+        guard let sensorID = state.sensorID else {
+            return
+        }
+        let issue = message.algorithmState.hasReliableGlucose ? nil : message.algorithmState.description
+        let reported = state.sensorIssueReportedFor == sensorID ? state.reportedSensorIssue : nil
+        guard issue != reported else {
+            return
+        }
+        mutateState { state in
+            state.sensorIssueReportedFor = sensorID
+            state.reportedSensorIssue = issue
+        }
+        guard let issue else {
+            return
+        }
+        let activationDate = sensor.activationDate ?? state.activatedAt
+        let event = PersistedCgmEvent(
+            date: activationDate?.addingTimeInterval(TimeInterval(message.glucoseTimestamp)) ?? Date(),
+            type: .sensorIssue,
+            deviceIdentifier: eventDeviceIdentifier(sensorID: sensorID),
+            error: CgmEventError(code: issue, isFatal: message.algorithmState.sensorFailed)
+        )
+        delegate.notify { delegate in
+            delegate?.cgmManager(self, hasNew: [event])
+        }
+    }
+
     /// Closes the current sensor's session in Loop's CGM event history, once.
     /// Paired with the `sensorStart` recorded at discovery, so the history
     /// brackets each session; Loop tolerates a missing end, which is why this
@@ -629,14 +751,18 @@ extension G7CGMManager {
             logDeviceCommunication("Issuing alert \(alert.rawValue)", type: .connection)
         }
         delegate.notify { delegate in
-            delegate?.issueAlert(loopAlert)
+            Task {
+                await delegate?.issueAlert(loopAlert)
+            }
         }
     }
 
     private func retractLifecycleAlert(_ alert: G7LifecycleAlert) {
         let identifier = alert.identifier(managerIdentifier: pluginIdentifier)
         delegate.notify { delegate in
-            delegate?.retractAlert(identifier: identifier)
+            Task {
+                await delegate?.retractAlert(identifier: identifier)
+            }
         }
     }
 
@@ -698,10 +824,18 @@ extension G7CGMManager: G7SensorDelegate {
         logDeviceCommunication("New sensor \(name) discovered, activated at \(activatedAt)", type: .connection)
 
         let shouldSwitchToNewSensor = true
+        // While eavesdropping, a held code was for another controller, and it belonged to the sensor
+        // just replaced: it goes, and the user is asked for the new one while it is in hand.
+        let watchCodeToReplace = !state.configuredByAnotherController && state.sessionMode == .eavesdropping
+            && state.pairingCode != nil && state.sensorID != name
 
         if shouldSwitchToNewSensor {
             sensor.cancelPendingCalibration()
             mutateState { state in
+                if watchCodeToReplace {
+                    state.pairingCode = nil
+                    state.sharedKey = nil
+                }
                 state.sensorID = name
                 state.activatedAt = activatedAt
                 state.calibration = nil
@@ -716,18 +850,42 @@ extension G7CGMManager: G7SensorDelegate {
             }
             recordPendingSensorStart()
             scheduleSessionTimedAlerts()
+            if watchCodeToReplace {
+                let content = Alert.Content(
+                    title: String(format: LocalizedString("New Sensor %1$@", comment: "Alert title asking for a new G7's pairing code for the watch (1: sensor name)"), name),
+                    body: LocalizedString("Enter its pairing code in the Dexcom G7 settings so the watch can read it without your phone. The code is shown in the Dexcom app.", comment: "Alert body asking for a new G7's pairing code for the watch"),
+                    acknowledgeActionButtonLabel: LocalizedString("OK", comment: "Alert acknowledgment button label"))
+                let alert = Alert(identifier: Alert.Identifier(managerIdentifier: pluginIdentifier, alertIdentifier: "directRead.codeNeeded"),
+                                  foregroundContent: content, backgroundContent: content, trigger: .immediate)
+                delegate.notify { delegate in
+                    Task { await delegate?.issueAlert(alert) }
+                }
+            }
         }
 
         return shouldSwitchToNewSensor
     }
 
-    public func sensor(_ sensor: G7Sensor, didAuthenticateWith sharedKey: Data, deviceName: String?) {
-        logDeviceCommunication("Authenticated with the sensor directly.", type: .connection)
+    public func sensor(_ sensor: G7Sensor, didAuthenticateWith sharedKey: Data, deviceName: String?, authenticity: G7SensorAuthenticity) {
+        logDeviceCommunication("Authenticated with the sensor directly (authenticity: \(authenticity.rawValue)).", type: .connection)
         mutateState { state in
             state.sharedKey = sharedKey
+            state.sensorAuthenticity = authenticity
             state.peripheralIdentifier = sensor.credentials.peripheralIdentifier
             state.lastAuthenticationFailure = nil
             state.lastAuthenticationFailureDate = nil
+        }
+    }
+
+    public func sensor(_ sensor: G7Sensor, didAdoptPeripheral identifier: UUID?) {
+        mutateState { state in
+            state.peripheralIdentifier = identifier
+        }
+    }
+
+    public func sensorStatusDidChange(_ sensor: G7Sensor) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: G7CGMManager.statusDidChange, object: self)
         }
     }
 
@@ -736,6 +894,12 @@ extension G7CGMManager: G7SensorDelegate {
         mutateState { state in
             state.sharedKey = nil
         }
+    }
+
+    public func sensorPairingDidNotFinish(_ sensor: G7Sensor) {
+        logDeviceCommunication("The last pairing did not finish (its Bluetooth bond was never confirmed); the next connection pairs again, with the app open", type: .connection)
+        pairingUnfinishedAlertPending = true
+        issueLifecycleAlert(.pairingUnfinished)
     }
 
     public func sensor(_ sensor: G7Sensor, didReceive transmitterVersion: TransmitterVersionMessage) {
@@ -762,17 +926,6 @@ extension G7CGMManager: G7SensorDelegate {
             lastErrorAt: state.shareLastErrorAt,
             pendingCount: shareUploader?.status.pendingCount ?? 0
         )
-    }
-
-    /// A client for the signed-in account, for managing followers.
-    public var shareClient: G7ShareClient? {
-        G7ShareCredentialStore().load().map { credentials in
-            let client = G7ShareClient(credentials: credentials)
-            client.logHandler = { [weak self] message in
-                self?.logDeviceCommunication("Dexcom Share: " + message, type: .connection)
-            }
-            return client
-        }
     }
 
     /// Verifies the credentials with the service, keeps them, and starts
@@ -853,12 +1006,35 @@ extension G7CGMManager: G7SensorDelegate {
 
     /// Hands a meter glucose (mg/dL, taken at `date`) to the sensor on its
     /// next connection. Replaces any calibration still waiting.
+    /// The value is also emitted right away as a user-entered glucose
+    /// sample, timestamped when it was taken, whatever the sensor decides.
     public func calibrate(glucose: UInt16, at date: Date = Date()) {
         logDeviceCommunication("Calibration \(glucose) mg/dL entered; queued for the sensor's next connection", type: .connection)
         mutateState { state in
             state.calibration = G7CalibrationRecord(glucose: glucose, enteredAt: date)
         }
         sensor.calibrate(glucose: glucose, at: date)
+        updateDelegate(with: .newData([calibrationSample(glucose: glucose, date: date)]))
+    }
+
+    /// The entered meter value as a user-entered sample, at the time it was taken.
+    private func calibrationSample(glucose: UInt16, date: Date) -> NewGlucoseSample {
+        NewGlucoseSample(
+            date: date,
+            quantity: LoopQuantity(unit: .milligramsPerDeciliter, doubleValue: Double(min(max(glucose, GlucoseLimits.minimum), GlucoseLimits.maximum))),
+            condition: nil,
+            trend: nil,
+            trendRate: nil,
+            isDisplayOnly: false,
+            wasUserEntered: true,
+            syncIdentifier: calibrationSyncIdentifier(glucose: glucose, date: date),
+            device: device
+        )
+    }
+
+    /// Its own namespace, so a calibration never dedup-collides with a sensor reading.
+    private func calibrationSyncIdentifier(glucose: UInt16, date: Date) -> String {
+        "calibration \(state.sensorID ?? "unknown") \(date.timeIntervalSince1970) \(glucose)"
     }
 
     public func cancelPendingCalibration() {
@@ -876,6 +1052,14 @@ extension G7CGMManager: G7SensorDelegate {
             state.calibration?.outcome = response.accepted
                 ? .accepted(at: Date())
                 : .rejected(status: response.status, at: Date())
+        }
+    }
+
+    public func sensor(_ sensor: G7Sensor, didDiscardStaleCalibrationEnteredAt date: Date) {
+        mutateState { state in
+            if state.calibration?.outcome == .pending, state.calibration?.enteredAt == date {
+                state.calibration?.outcome = .expired(at: Date())
+            }
         }
     }
 
@@ -914,6 +1098,11 @@ extension G7CGMManager: G7SensorDelegate {
         if suspectedEndOfSession {
             scheduleScanAfterSuspectedSessionEnd()
         }
+    }
+
+    /// A connection line from the bluetooth manager, into the host's device log.
+    public func sensor(_ sensor: G7Sensor, logEvent line: String) {
+        logDeviceCommunication(line, type: .connection)
     }
 
     /// A disconnect before authentication usually means the session was stopped,
@@ -955,6 +1144,15 @@ extension G7CGMManager: G7SensorDelegate {
             return
         }
 
+        // A manager passed its configuration does not decide the sensor ended: the controller that
+        // passed it does, and its next export carries the replacement. Keep reading this one.
+        if state.configuredByAnotherController {
+            logDeviceCommunication("No sensor communication since suspected session end; keeping the sensor this manager was passed.", type: .connection)
+            mutateState { $0.suspectedSessionEndAt = nil }
+            sensor.resumeScanning()
+            return
+        }
+
         logDeviceCommunication("No sensor communication since suspected session end.", type: .connection)
         scanForNewSensor()
     }
@@ -986,9 +1184,10 @@ extension G7CGMManager: G7SensorDelegate {
 
         let remaining = graceStart.addingTimeInterval(suspectedSessionEndGracePeriod).timeIntervalSinceNow
         guard remaining > 0 else {
-            // The window elapsed while we were not running, with nothing heard since.
+            // The window elapsed while we were not running, with nothing heard since. The expiry
+            // decides as it would have live, so a passed manager keeps its sensor here too.
             logDeviceCommunication("Grace period for suspected session end expired while app was not running.", type: .connection)
-            scanForNewSensor()
+            handleSuspectedSessionEndGraceExpiry(graceStart: graceStart)
             return
         }
 
@@ -1012,7 +1211,7 @@ extension G7CGMManager: G7SensorDelegate {
         case G7AuthenticatorError.rejected(_, .noAppKey):
             // Recovered unattended by the session; nothing for the user to do.
             return nil
-        case G7AuthenticatorError.rejected, G7AuthenticatorError.challengeMismatch, G7AuthenticatorError.unexpectedResponse:
+        case G7AuthenticatorError.rejected, G7AuthenticatorError.challengeMismatch, G7AuthenticatorError.unexpectedResponse, G7AuthenticatorError.storedKeyNotBonded:
             return String(describing: error)
         default:
             return nil
@@ -1041,10 +1240,15 @@ extension G7CGMManager: G7SensorDelegate {
             }
             retractLifecycleAlert(.connectionRefused)
         }
+        if pairingUnfinishedAlertPending {
+            pairingUnfinishedAlertPending = false
+            retractLifecycleAlert(.pairingUnfinished)
+        }
         if !didRetractLegacySignalLoss {
             didRetractLegacySignalLoss = true
             retractLifecycleAlert(.signalLoss)
         }
+        recordSensorIssueIfChanged(message)
         raiseSensorFailedAlertIfNeeded(for: message)
         recordPendingSensorStart()
 
@@ -1080,6 +1284,9 @@ extension G7CGMManager: G7SensorDelegate {
         mutateState { state in
             state.latestReading = message
             state.latestReadingTimestamp = latestReadingTimestamp
+            // A sensor passed in by identity may never pass through discovery, the only other place
+            // this is latched. Without it every reading is named "invalid".
+            if state.configuredByAnotherController, state.activatedAt == nil { state.activatedAt = activationDate }
         }
 
         guard let glucose = message.glucose else {
@@ -1092,8 +1299,8 @@ extension G7CGMManager: G7SensorDelegate {
             return
         }
 
-        let unit = HKUnit.milligramsPerDeciliter
-        let quantity = HKQuantity(unit: unit, doubleValue: Double(min(max(glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
+        let unit = LoopUnit.milligramsPerDeciliter
+        let quantity = LoopQuantity(unit: unit, doubleValue: Double(min(max(glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
 
         // While eavesdropping the Dexcom app uploads the readings itself.
         if !message.glucoseIsDisplayOnly, state.sessionMode == .direct {
@@ -1108,7 +1315,8 @@ extension G7CGMManager: G7SensorDelegate {
                 trend: message.trendType,
                 trendRate: message.trendRate,
                 isDisplayOnly: message.glucoseIsDisplayOnly,
-                wasUserEntered: message.glucoseIsDisplayOnly,
+                // user-entered marks a manual entry; this is a device reading.
+                wasUserEntered: false,
                 syncIdentifier: generateSyncIdentifier(timestamp: message.glucoseTimestamp),
                 device: device
             )
@@ -1149,7 +1357,7 @@ extension G7CGMManager: G7SensorDelegate {
             }
         }
 
-        let unit = HKUnit.milligramsPerDeciliter
+        let unit = LoopUnit.milligramsPerDeciliter
 
         let samples = backfill.compactMap { entry -> NewGlucoseSample? in
             guard let glucose = entry.glucose else {
@@ -1161,7 +1369,7 @@ extension G7CGMManager: G7SensorDelegate {
                 return nil
             }
 
-            let quantity = HKQuantity(unit: unit, doubleValue: Double(min(max(glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
+            let quantity = LoopQuantity(unit: unit, doubleValue: Double(min(max(glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
 
             return NewGlucoseSample(
                 date: activationDate.addingTimeInterval(TimeInterval(entry.timestamp)),
@@ -1170,9 +1378,10 @@ extension G7CGMManager: G7SensorDelegate {
                 trend: entry.trendType,
                 trendRate: entry.trendRate,
                 isDisplayOnly: entry.glucoseIsDisplayOnly,
-                wasUserEntered: entry.glucoseIsDisplayOnly,
+                wasUserEntered: false,
                 syncIdentifier: generateSyncIdentifier(timestamp: entry.timestamp),
-                device: device
+                device: device,
+                isBackfill: true
             )
         }
 
@@ -1194,11 +1403,11 @@ extension G7CGMManager: G7SensorDelegate {
 }
 
 extension G7BackfillMessage {
-    public var trendRate: HKQuantity? {
+    public var trendRate: LoopQuantity? {
         guard let trend = trend else {
             return nil
         }
-        return HKQuantity(unit: .milligramsPerDeciliterPerMinute, doubleValue: trend)
+        return LoopQuantity(unit: .milligramsPerDeciliterPerMinute, doubleValue: trend)
     }
 }
 
@@ -1207,18 +1416,18 @@ extension G7GlucoseMessage: GlucoseDisplayable {
         return hasReliableGlucose
     }
 
-    public var trendRate: HKQuantity? {
+    public var trendRate: LoopQuantity? {
         guard let trend = trend else {
             return nil
         }
-        return HKQuantity(unit: .milligramsPerDeciliterPerMinute, doubleValue: trend)
+        return LoopQuantity(unit: .milligramsPerDeciliterPerMinute, doubleValue: trend)
     }
 
-    public var glucoseQuantity: HKQuantity? {
+    public var glucoseQuantity: LoopQuantity? {
         guard let glucose = glucose else {
             return nil
         }
-        return HKQuantity(unit: .milligramsPerDeciliter, doubleValue: Double(glucose))
+        return LoopQuantity(unit: .milligramsPerDeciliter, doubleValue: Double(glucose))
     }
 
     public var isLocal: Bool {
@@ -1238,4 +1447,14 @@ extension G7GlucoseMessage: GlucoseDisplayable {
             return nil
         }
     }
+}
+
+extension G7CGMManager: DeviceConfigurationSharing {
+    public func exportConfiguration() -> SharedDeviceConfiguration {
+        SharedDeviceConfiguration(managerIdentifier: pluginIdentifier, asOf: Date(), state: state.sharedState)
+    }
+
+    /// The user's Read on Apple Watch setting.
+    public var isConfigurationSharingEnabled: Bool { isWatchDirectReadEnabled }
+
 }

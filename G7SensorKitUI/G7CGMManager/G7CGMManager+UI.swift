@@ -22,10 +22,14 @@ public struct G7DeviceStatusHighlight: DeviceStatusHighlight, Equatable {
     }
 }
 
-extension G7CGMManager: CGMManagerUI {
+extension G7CGMManager: @retroactive CGMManagerUI {
 
     public static var onboardingImage: UIImage? {
         return nil
+    }
+
+    public static var pickerImage: UIImage? {
+        return UIImage(named: "g7", in: Bundle(for: G7SettingsViewModel.self), compatibleWith: nil)
     }
 
     public static func setupViewController(bluetoothProvider: LoopKit.BluetoothProvider, displayGlucosePreference: DisplayGlucosePreference, colorPalette: LoopKitUI.LoopUIColorPalette, allowDebugFeatures: Bool, prefersToSkipUserInteraction: Bool) -> LoopKitUI.SetupUIResult<LoopKitUI.CGMManagerViewController, LoopKitUI.CGMManagerUI>
@@ -114,25 +118,18 @@ extension G7CGMManager: CGMManagerUI {
                 state: .warning)
         }
 
+        if let latestReading = latestReading, latestReading.algorithmState.hasTemporaryError {
+            return G7DeviceStatusHighlight(
+                localizedMessage: LocalizedString("Sensor\nIssue", comment: "G7 Status highlight text for sensor error"),
+                imageName: "exclamationmark.circle.fill",
+                state: .warning)
+        }
+
         if lifecycleState == .warmup {
             return G7DeviceStatusHighlight(
                 localizedMessage: LocalizedString("Sensor\nWarmup", comment: "G7 Status highlight text for sensor warmup"),
                 imageName: "clock",
                 state: .normalCGM)
-        }
-
-        // Every state the sensor won't vouch for drops the reading, not just
-        // the one that names itself a temporary issue: excess noise, a stop,
-        // a calibration state, a session end, or a code this build predates
-        // are all discarded too, and saying nothing leaves the user staring
-        // at a stale number with no reason for it. Warmup, failure and expiry
-        // are handled above, so what reaches here is the sensor connected and
-        // talking but not trusting its own glucose.
-        if let latestReading = latestReading, !latestReading.algorithmState.hasReliableGlucose {
-            return G7DeviceStatusHighlight(
-                localizedMessage: LocalizedString("Sensor\nIssue", comment: "G7 Status highlight text for sensor error"),
-                imageName: "exclamationmark.circle.fill",
-                state: .warning)
         }
         return nil
     }
