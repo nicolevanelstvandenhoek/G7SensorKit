@@ -8,7 +8,6 @@
 
 import Foundation
 import G7SensorKit
-import LoopAlgorithm
 import LoopKit
 import LoopKitUI
 import WatchConnectivity
@@ -166,9 +165,10 @@ class G7SettingsViewModel: ObservableObject {
 
     // MARK: - Watch direct read
 
-    /// Offered when a paired watch has the app installed, or while it is on; otherwise the screen is
-    /// unchanged.
+    /// Offered when the app supports it and a paired watch has the app installed, or while it is on;
+    /// otherwise the screen is unchanged.
     var showsWatchDirectRead: Bool {
+        guard cgmManager.cgmManagerDelegate?.supportsWatchDirectRead(for: cgmManager) == true else { return false }
         if watchDirectReadEnabled { return true }
         guard WCSession.isSupported() else { return false }
         let session = WCSession.default
