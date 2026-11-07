@@ -852,7 +852,7 @@ extension G7CGMManager: G7SensorDelegate {
                 let content = Alert.Content(
                     title: String(format: LocalizedString("New Sensor %1$@", comment: "Alert title asking for a new G7's pairing code for the watch (1: sensor name)"), name),
                     body: LocalizedString("Enter its pairing code in the Dexcom G7 settings so the watch can read it without your phone. The code is shown in the Dexcom app.", comment: "Alert body asking for a new G7's pairing code for the watch"),
-                    acknowledgeActionButtonLabel: LocalizedString("OK", comment: "Alert acknowledgment button label"))
+                    acknowledgeActionButtonLabel: LocalizedString("Close", comment: "Alert acknowledgment button label"))
                 let alert = Alert(identifier: Alert.Identifier(managerIdentifier: pluginIdentifier, alertIdentifier: "directRead.codeNeeded"),
                                   foregroundContent: content, backgroundContent: content, trigger: .immediate)
                 delegate.notify { delegate in

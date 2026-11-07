@@ -106,7 +106,7 @@ enum G7LifecycleAlert: String, CaseIterable {
         let content = Alert.Content(
             title: title,
             body: body,
-            acknowledgeActionButtonLabel: LocalizedString("OK", comment: "Alert acknowledgment button label")
+            acknowledgeActionButtonLabel: LocalizedString("Close", comment: "Alert acknowledgment button label")
         )
         return Alert(
             identifier: identifier(managerIdentifier: managerIdentifier),

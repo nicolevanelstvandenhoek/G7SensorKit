@@ -186,7 +186,7 @@ if viewModel.sessionMode == .eavesdropping {
             LocalizedString("Now Set Up the Dexcom App", comment: "Title of the instructions after switching back to the Dexcom app's session"),
             isPresented: $showingDexcomAppModeInstructions
         ) {
-            Button(LocalizedString("OK", comment: "Alert acknowledgment button label"), role: .cancel) {}
+            Button(LocalizedString("Close", comment: "Alert acknowledgment button label"), role: .cancel) {}
         } message: {
             Text(String(format: LocalizedString("Install the Dexcom app, sign in, and add this sensor with its 4-digit pairing code%1$@. The sensor may take up to 15 minutes to accept the Dexcom app. %2$@ will show readings again once the Dexcom app is connected.", comment: "Instructions after switching back to the Dexcom app's session (1: the pairing code, if known; 2: appName)"), viewModel.pairingCode.map { " (" + $0 + ")" } ?? "", appName))
         }
