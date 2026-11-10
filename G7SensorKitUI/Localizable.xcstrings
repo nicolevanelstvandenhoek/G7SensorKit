@@ -1871,6 +1871,28 @@
         }
       }
     },
+    "Connection" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connection"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbinding"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbindung"
+          }
+        }
+      }
+    },
     "Connection\nRefused" : {
       "comment" : "G7 Status highlight text after the sensor refused authentication",
       "localizations" : {
@@ -4329,6 +4351,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nieuwe sensor"
+          }
+        }
+      }
+    },
+    "Next reading" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next reading"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volgende meting"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nächste Messung"
           }
         }
       }

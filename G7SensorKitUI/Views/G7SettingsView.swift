@@ -35,6 +35,7 @@ struct G7SettingsView: View {
 
     @Environment(\.appName) private var appName
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.colorScheme) private var colorScheme
 
     @State private var showingDeletionSheet = false
     @State private var showingCalibration = false
@@ -61,8 +62,13 @@ struct G7SettingsView: View {
 
     var body: some View {
         List {
+            Group {
             Section() {
-                sensorCard
+                if isElara {
+                    elaraSensorCard
+                } else {
+                    sensorCard
+                }
                 if let message = sessionMessage {
                     Text(message)
                         .font(.subheadline)
@@ -163,8 +169,12 @@ if viewModel.sessionMode == .eavesdropping {
 
                 deleteCGMButton
             }
+            }
+            .listRowBackground(isElara ? elaraCardFill : nil)
         }
         .insetGroupedListStyle()
+        .scrollContentBackground(isElara ? .hidden : .automatic)
+        .background(isElara ? AnyView(elaraBackground.ignoresSafeArea()) : AnyView(EmptyView()))
         .navigationBarItems(trailing: doneButton)
         .sheet(isPresented: $showingCalibration) {
             G7CalibrationFlowView(viewModel: viewModel)
@@ -650,6 +660,181 @@ if viewModel.sessionMode == .eavesdropping {
             }
         }
         .padding(.vertical, 4)
+    }
+
+    // MARK: Elara skin
+
+    /// Trio's Elara skin is on: the app writes this flag, the driver only reads it.
+    private var isElara: Bool { UserDefaults.standard.bool(forKey: "TrioElaraSkinActive") }
+
+    private var elaraCardFill: Color {
+        colorScheme == .dark ? Color.white.opacity(0.06) : Color.white.opacity(0.8)
+    }
+
+    private var elaraBackground: LinearGradient {
+        colorScheme == .dark
+            ? LinearGradient(colors: [Color(red: 0.08, green: 0.15, blue: 0.35), Color(red: 0.05, green: 0.09, blue: 0.19), Color(red: 0.04, green: 0.06, blue: 0.11)], startPoint: .top, endPoint: .bottom)
+            : LinearGradient(colors: [Color(red: 0.86, green: 0.92, blue: 0.81), Color(red: 0.96, green: 0.97, blue: 0.94)], startPoint: .top, endPoint: .bottom)
+    }
+
+    private var elaraMuted: Color { Color(red: 143 / 255, green: 148 / 255, blue: 156 / 255) }
+
+    /// Elara version of the sensor card: the sensor with its lifetime bar and dates, then four tiles
+    /// (last reading, next reading, connection, expiration).
+    private var elaraSensorCard: some View {
+        VStack(spacing: 10) {
+            HStack(spacing: 14) {
+                viewModel.sensorModel.image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 88, height: 88)
+                    .opacity(sessionIsOver || viewModel.lifecycleState == .searching ? 0.4 : 1)
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(progressLabel)
+                            .font(.subheadline)
+                            .foregroundColor(progressLabelColor)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.8)
+                        Spacer(minLength: 4)
+                        if let remaining = viewModel.progressValue, viewModel.lifecycleState == .ok || viewModel.lifecycleState == .warmup {
+                            Text(remainingComponents(remaining).map { $0.value + " " + $0.unit }.joined(separator: " "))
+                                .font(.subheadline.weight(.bold))
+                                .lineLimit(1)
+                        }
+                    }
+                    G7LifecycleBar(
+                        progress: viewModel.progressBarProgress,
+                        color: sessionIsOver ? Color(.systemGray3) : color(for: viewModel.progressBarColorStyle)
+                    )
+                    if let activatedAt = viewModel.activatedAt {
+                        Text(timeFormatter.string(from: activatedAt) + " – " + timeFormatter.string(from: activatedAt.addingTimeInterval(viewModel.lifetime)))
+                            .font(.caption)
+                            .foregroundColor(elaraMuted)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.8)
+                    }
+                }
+            }
+            .accessibilityElement(children: .combine)
+
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 8), GridItem(.flexible(), spacing: 8)], spacing: 8) {
+                elaraTile(LocalizedString("Last reading", comment: "Label above the last reading row on the sensor card")) {
+                    lastReadingTileValue
+                }
+                elaraTile(LocalizedString("Next reading", comment: "Elara sensor card tile: time until the next G7 reading")) {
+                    nextReadingTileValue
+                }
+                elaraTile(LocalizedString("Connection", comment: "Elara sensor card tile: Bluetooth connection status")) {
+                    Text(connectionText)
+                        .font(.system(size: 17, weight: .heavy))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                }
+                elaraTile(LocalizedString("Sensor Expiration", comment: "title for g7 settings row showing sensor expiration time")) {
+                    Text(viewModel.activatedAt.map { timeFormatter.string(from: $0.addingTimeInterval(viewModel.lifetime)) } ?? "–")
+                        .font(.system(size: 15, weight: .heavy))
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.7)
+                }
+            }
+        }
+        .padding(.vertical, 4)
+    }
+
+    private func elaraTile<Content: View>(_ label: String, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: 3) {
+            Text(label.uppercased())
+                .font(.system(size: 9, weight: .heavy))
+                .kerning(0.6)
+                .foregroundColor(elaraMuted)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+            content()
+        }
+        .frame(maxWidth: .infinity, minHeight: 58, alignment: .topLeading)
+        .padding(10)
+        .background(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .fill(colorScheme == .dark ? Color.white.opacity(0.05) : Color.black.opacity(0.03))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .strokeBorder(colorScheme == .dark ? Color.white.opacity(0.08) : Color.black.opacity(0.06), lineWidth: 1)
+        )
+    }
+
+    @ViewBuilder
+    private var lastReadingTileValue: some View {
+        if sessionIsOver {
+            Text(LocalizedString("Replace Sensor", comment: "Last reading row text once the session is over"))
+                .font(.system(size: 15, weight: .heavy))
+                .foregroundColor(guidanceColors.critical)
+        } else if viewModel.hasLastGlucose {
+            VStack(alignment: .leading, spacing: 1) {
+                HStack(alignment: .firstTextBaseline, spacing: 3) {
+                    Text(viewModel.lastGlucoseValueString)
+                        .font(.system(size: 20, weight: .heavy))
+                        .foregroundColor(glucoseTintColor)
+                    Text(viewModel.displayGlucosePreference.unit.shortLocalizedUnitString())
+                        .font(.caption.weight(.semibold))
+                        .foregroundColor(elaraMuted)
+                }
+                if let trend = viewModel.lastGlucoseTrend {
+                    Text(trend.symbol + " " + trend.localizedDescription)
+                        .font(.caption)
+                        .foregroundColor(elaraMuted)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                }
+            }
+        } else if viewModel.hasSensorIssue {
+            Text(LocalizedString("Sensor Issue", comment: "Last reading row text while the sensor reports a temporary issue"))
+                .font(.system(size: 15, weight: .heavy))
+                .foregroundColor(guidanceColors.warning)
+        } else if viewModel.lifecycleState == .warmup {
+            Text(LocalizedString("Sensor Warmup", comment: "Last reading row text during warmup"))
+                .font(.system(size: 15, weight: .heavy))
+        } else {
+            Text("– – –").font(.system(size: 20, weight: .heavy)).foregroundColor(elaraMuted)
+        }
+    }
+
+    /// Countdown to the next reading, or the minutes since the last one once it is late.
+    @ViewBuilder
+    private var nextReadingTileValue: some View {
+        if let latest = viewModel.latestReadingTimestamp {
+            TimelineView(.periodic(from: .now, by: 1)) { context in
+                let age = max(0, context.date.timeIntervalSince(latest))
+                if age < Self.readingInterval + Self.readingGrace {
+                    let remaining = max(0, Int((Self.readingInterval - age).rounded(.up)))
+                    Text(String(format: "%d:%02d", remaining / 60, remaining % 60))
+                        .font(.system(size: 20, weight: .heavy))
+                        .monospacedDigit()
+                } else {
+                    let minutes = Int(age / 60)
+                    let color: Color = minutes > 20 ? guidanceColors.critical : (minutes > 10 ? guidanceColors.warning : glucoseTintColor)
+                    Text(String(minutes) + " " + LocalizedString("min", comment: "Unit after the minutes-since-last-reading number"))
+                        .font(.system(size: 20, weight: .heavy))
+                        .foregroundColor(color)
+                }
+            }
+        } else {
+            Text("–").font(.system(size: 20, weight: .heavy)).foregroundColor(elaraMuted)
+        }
+    }
+
+    private var connectionText: String {
+        if viewModel.scanning {
+            return LocalizedString("Scanning", comment: "title for g7 settings connection status when scanning")
+        }
+        if viewModel.connected {
+            return LocalizedString("Connected", comment: "title for g7 settings connection status when connected")
+        }
+        if viewModel.sessionMode == .direct {
+            return LocalizedString("Waiting for next reading", comment: "title for g7 settings connection status between readings in direct mode")
+        }
+        return LocalizedString("Connecting", comment: "title for g7 settings connection status when connecting")
     }
 
     // MARK: Progress line
