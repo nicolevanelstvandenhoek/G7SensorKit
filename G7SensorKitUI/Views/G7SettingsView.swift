@@ -701,17 +701,18 @@ if viewModel.sessionMode == .eavesdropping {
                     .frame(width: 88, height: 88)
                     .opacity(sessionIsOver || viewModel.lifecycleState == .searching ? 0.4 : 1)
                 VStack(alignment: .leading, spacing: 6) {
-                    HStack(alignment: .firstTextBaseline) {
+                    // The label on one line, the time left large below it
+                    VStack(alignment: .leading, spacing: 1) {
                         Text(progressLabel)
                             .font(.subheadline)
                             .foregroundColor(progressLabelColor)
-                            .lineLimit(2)
-                            .minimumScaleFactor(0.8)
-                        Spacer(minLength: 4)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                         if let remaining = viewModel.progressValue, viewModel.lifecycleState == .ok || viewModel.lifecycleState == .warmup {
                             Text(remainingComponents(remaining).map { $0.value + " " + $0.unit }.joined(separator: " "))
-                                .font(.subheadline.weight(.bold))
+                                .font(.system(size: 22, weight: .heavy))
                                 .lineLimit(1)
+                                .minimumScaleFactor(0.7)
                         }
                     }
                     G7LifecycleBar(
@@ -722,8 +723,8 @@ if viewModel.sessionMode == .eavesdropping {
                         Text(timeFormatter.string(from: activatedAt) + " – " + timeFormatter.string(from: activatedAt.addingTimeInterval(viewModel.lifetime)))
                             .font(.caption)
                             .foregroundColor(elaraMuted)
-                            .lineLimit(2)
-                            .minimumScaleFactor(0.8)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                     }
                 }
             }
