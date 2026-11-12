@@ -688,6 +688,13 @@ if viewModel.sessionMode == .eavesdropping {
             : LinearGradient(colors: [Color(red: 0.86, green: 0.92, blue: 0.81), Color(red: 0.96, green: 0.97, blue: 0.94)], startPoint: .top, endPoint: .bottom)
     }
 
+    /// Start and end of the sensor without the weekday, for a narrow line.
+    private var shortTimeFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("MMMdjmm")
+        return formatter
+    }
+
     private var elaraMuted: Color { Color(red: 143 / 255, green: 148 / 255, blue: 156 / 255) }
 
     /// Elara version of the sensor card: the sensor with its lifetime bar and dates, then four tiles
@@ -720,11 +727,17 @@ if viewModel.sessionMode == .eavesdropping {
                         color: sessionIsOver ? Color(.systemGray3) : color(for: viewModel.progressBarColorStyle)
                     )
                     if let activatedAt = viewModel.activatedAt {
-                        Text(timeFormatter.string(from: activatedAt) + " – " + timeFormatter.string(from: activatedAt.addingTimeInterval(viewModel.lifetime)))
-                            .font(.caption)
-                            .foregroundColor(elaraMuted)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.7)
+                        let expiresAt = activatedAt.addingTimeInterval(viewModel.lifetime)
+                        // Always one line: drop the weekday when it does not fit, then shrink
+                        ViewThatFits(in: .horizontal) {
+                            Text(timeFormatter.string(from: activatedAt) + " – " + timeFormatter.string(from: expiresAt))
+                                .fixedSize()
+                            Text(shortTimeFormatter.string(from: activatedAt) + " – " + shortTimeFormatter.string(from: expiresAt))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.6)
+                        }
+                        .font(.caption)
+                        .foregroundColor(elaraMuted)
                     }
                 }
             }
