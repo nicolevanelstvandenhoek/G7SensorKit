@@ -7289,6 +7289,23 @@
         }
       }
     },
+    "Site" : {
+      "comment" : "Elara sensor card tile: where the sensor was last placed",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stelle"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plek"
+          }
+        }
+      }
+    },
     "Software Number" : {
       "comment" : "Row label for the sensor's software number",
       "localizations" : {

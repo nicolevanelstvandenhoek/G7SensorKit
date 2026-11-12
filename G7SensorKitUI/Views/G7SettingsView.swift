@@ -765,11 +765,39 @@ if viewModel.sessionMode == .eavesdropping {
                         .minimumScaleFactor(0.7)
                 }
             }
+
+            // Where the current sensor was placed (from the app's site log), across the full width
+            elaraTile(LocalizedString("Site", comment: "Elara sensor card tile: where the sensor was last placed"), minHeight: 0) {
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Image(systemName: "sensor.tag.radiowaves.forward")
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(Color("LoopGreen"))
+                    if let site = UserDefaults.standard.string(forKey: "TrioElaraSensorSite") {
+                        Text(site)
+                            .font(.system(size: 15, weight: .heavy))
+                            .lineLimit(1)
+                        if let placedAt = UserDefaults.standard.object(forKey: "TrioElaraSensorSiteDate") as? Date {
+                            Text(timeFormatter.string(from: placedAt))
+                                .font(.caption)
+                                .foregroundColor(elaraMuted)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.7)
+                        }
+                    } else {
+                        Text("–").font(.system(size: 15, weight: .heavy))
+                    }
+                    Spacer(minLength: 0)
+                }
+            }
         }
         .padding(.vertical, 4)
     }
 
-    private func elaraTile<Content: View>(_ label: String, @ViewBuilder content: () -> Content) -> some View {
+    private func elaraTile<Content: View>(
+        _ label: String,
+        minHeight: CGFloat = 46,
+        @ViewBuilder content: () -> Content
+    ) -> some View {
         VStack(alignment: .leading, spacing: 3) {
             Text(label.uppercased())
                 .font(.system(size: 9, weight: .heavy))
@@ -779,8 +807,9 @@ if viewModel.sessionMode == .eavesdropping {
                 .minimumScaleFactor(0.8)
             content()
         }
-        .frame(maxWidth: .infinity, minHeight: 58, alignment: .topLeading)
-        .padding(10)
+        .frame(maxWidth: .infinity, minHeight: minHeight, alignment: .topLeading)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 8)
         .background(
             RoundedRectangle(cornerRadius: 14, style: .continuous)
                 .fill(colorScheme == .dark ? Color.white.opacity(0.05) : Color.black.opacity(0.03))
