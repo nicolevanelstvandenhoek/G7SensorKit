@@ -738,10 +738,12 @@ if viewModel.sessionMode == .eavesdropping {
                     nextReadingTileValue
                 }
                 elaraTile(LocalizedString("Connection", comment: "Elara sensor card tile: Bluetooth connection status")) {
+                    // Longer states wrap to a second line instead of being cut off
                     Text(connectionText)
                         .font(.system(size: 17, weight: .heavy))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.8)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 elaraTile(LocalizedString("Sensor Expiration", comment: "title for g7 settings row showing sensor expiration time")) {
                     Text(viewModel.activatedAt.map { timeFormatter.string(from: $0.addingTimeInterval(viewModel.lifetime)) } ?? "–")
