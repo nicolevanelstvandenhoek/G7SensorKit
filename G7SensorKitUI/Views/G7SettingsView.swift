@@ -667,6 +667,17 @@ if viewModel.sessionMode == .eavesdropping {
     /// Trio's Elara skin is on: the app writes this flag, the driver only reads it.
     private var isElara: Bool { UserDefaults.standard.bool(forKey: "TrioElaraSkinActive") }
 
+    /// Low red, in range green, high in the high color, by the app's glucose limits (mg/dL).
+    private var elaraGlucoseStatusColor: Color {
+        guard let mgdl = viewModel.lastGlucoseMgdl else { return glucoseTintColor }
+        let defaults = UserDefaults.standard
+        let low = defaults.object(forKey: "TrioElaraLowMgdl") as? Double ?? 70
+        let high = defaults.object(forKey: "TrioElaraHighMgdl") as? Double ?? 180
+        if mgdl < low { return Color("LoopRed") }
+        if mgdl > high { return Color("loopHigh") }
+        return Color("LoopGreen")
+    }
+
     private var elaraCardFill: Color {
         colorScheme == .dark ? Color.white.opacity(0.06) : Color.white.opacity(0.8)
     }
@@ -775,7 +786,7 @@ if viewModel.sessionMode == .eavesdropping {
                 HStack(alignment: .firstTextBaseline, spacing: 3) {
                     Text(viewModel.lastGlucoseValueString)
                         .font(.system(size: 20, weight: .heavy))
-                        .foregroundColor(glucoseTintColor)
+                        .foregroundColor(elaraGlucoseStatusColor)
                     Text(viewModel.displayGlucosePreference.unit.shortLocalizedUnitString())
                         .font(.caption.weight(.semibold))
                         .foregroundColor(elaraMuted)
