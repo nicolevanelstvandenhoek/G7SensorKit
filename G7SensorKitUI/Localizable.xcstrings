@@ -397,6 +397,22 @@
         }
       }
     },
+    "4-digit code" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4-stelliger Code"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4-cijferige code"
+          }
+        }
+      }
+    },
     "A big difference is a reason for caution, not a reason to calibrate" : {
       "comment" : "Calibration advice heading: large differences",
       "localizations" : {
@@ -624,6 +640,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wat je verder in de Dexcom-app had ingesteld, zoals meldingen voor snel stijgen of dalen, wordt niet overgenomen."
+          }
+        }
+      }
+    },
+    "Apple Watch" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Watch"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Watch"
           }
         }
       }
@@ -2698,6 +2730,38 @@
         }
       }
     },
+    "Entered %1$@, refused by the sensor: %2$@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eingegeben %1$@, vom Sensor abgelehnt: %2$@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingevoerd %1$@, geweigerd door de sensor: %2$@"
+          }
+        }
+      }
+    },
+    "Entered %@, not sent: the sensor did not connect within 5 minutes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eingegeben %@, nicht gesendet: Der Sensor hat sich nicht innerhalb von 5 Minuten verbunden"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingevoerd %@, niet verzonden: de sensor maakte binnen 5 minuten geen verbinding"
+          }
+        }
+      }
+    },
     "Entered %@, waiting for the sensor's next connection" : {
       "comment" : "Calibration outcome: pending (1: time entered)",
       "localizations" : {
@@ -3380,6 +3444,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hardwareversie"
+          }
+        }
+      }
+    },
+    "Hide Warning" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warnung ausblenden"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Waarschuwing verbergen"
+          }
+        }
+      }
+    },
+    "Hide this warning? Readings uploaded from this sensor stay marked as simulated. Hiding it is for development screenshots only." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Warnung ausblenden? Von diesem Sensor hochgeladene Werte bleiben als simuliert markiert. Das Ausblenden ist nur für Entwicklungs-Screenshots gedacht."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze waarschuwing verbergen? Waarden die vanaf deze sensor worden geüpload, blijven gemarkeerd als gesimuleerd. Verbergen is alleen bedoeld voor screenshots tijdens ontwikkeling."
           }
         }
       }
@@ -4344,6 +4440,22 @@
         }
       }
     },
+    "Needed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erforderlich"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nodig"
+          }
+        }
+      }
+    },
     "New Sensor" : {
       "comment" : "Navigation title of the apply-sensor screen",
       "localizations" : {
@@ -4377,6 +4489,22 @@
         }
       }
     },
+    "Next reading in %1$@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nächster Wert in %1$@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volgende meting over %1$@"
+          }
+        }
+      }
+    },
     "No Data (1 hour)" : {
       "comment" : "Follower alert: no data",
       "localizations" : {
@@ -4395,6 +4523,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nog geen volgers."
+          }
+        }
+      }
+    },
+    "No sensor" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Sensor"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen sensor"
           }
         }
       }
@@ -4867,6 +5011,22 @@
         }
       }
     },
+    "Read on Apple Watch" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf der Apple Watch lesen"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lezen op Apple Watch"
+          }
+        }
+      }
+    },
     "Region" : {
       "comment" : "Share sign-in server picker label",
       "localizations" : {
@@ -4962,6 +5122,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wrijf nog een keer rond de overpleister."
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sichern"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewaar"
+          }
+        }
+      }
+    },
+    "Saved" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesichert"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewaard"
           }
         }
       }
@@ -7289,6 +7481,22 @@
         }
       }
     },
+    "Simulated Sensor" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simulierter Sensor"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesimuleerde sensor"
+          }
+        }
+      }
+    },
     "Site" : {
       "comment" : "Elara sensor card tile: where the sensor was last placed",
       "localizations" : {
@@ -7482,6 +7690,22 @@
         }
       }
     },
+    "The sensor is reporting a temporary problem and is not sending glucose readings. They usually come back on their own, which can take up to 3 hours; you do not need to remove the sensor. Use a meter for treatment decisions until they do." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Sensor meldet ein vorübergehendes Problem und sendet keine Glukosewerte. Meist kommen sie von selbst zurück, das kann bis zu 3 Stunden dauern; der Sensor muss nicht entfernt werden. Nutze bis dahin ein Blutzuckermessgerät für Therapieentscheidungen."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De sensor meldt een tijdelijk probleem en stuurt geen glucosewaarden. Meestal komen ze vanzelf terug; dat kan tot 3 uur duren. Je hoeft de sensor niet te verwijderen. Gebruik tot die tijd een bloedglucosemeter voor behandelbeslissingen."
+          }
+        }
+      }
+    },
     "The sensor refuses calibrations during warmup, and readings are still settling for the first 12 to 24 hours. Give it a day before deciding it is off." : {
       "comment" : "Calibration advice: timing",
       "localizations" : {
@@ -7500,6 +7724,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De sensor blijft ongeveer 15 minuten aan deze telefoon gekoppeld. Wil je hem met een andere app gebruiken, wacht dan zo lang en vergeet de sensor via Instellingen > Bluetooth voordat je daar koppelt."
+          }
+        }
+      }
+    },
+    "The watch reads this sensor itself, so readings continue on the watch when your phone isn't there. The watch takes the sensor's watch slot, so the Dexcom watch app can't read it at the same time." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Watch liest diesen Sensor selbst aus, sodass die Werte auf der Watch weiterlaufen, wenn dein iPhone nicht da ist. Die Watch belegt dafür den Watch-Platz des Sensors, die Dexcom-Watch-App kann ihn also nicht gleichzeitig auslesen."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De Watch leest deze sensor zelf uit, zodat de metingen op de Watch doorgaan als je telefoon er niet is. De Watch gebruikt daarvoor de Watch-plek van de sensor, dus de Dexcom Watch-app kan hem niet tegelijk uitlezen."
+          }
+        }
+      }
+    },
+    "This is the g7sim development emulator, not a genuine Dexcom sensor. Its readings are simulated and must not be used for therapy." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dies ist der g7sim-Entwicklungsemulator, kein echter Dexcom-Sensor. Die Werte sind simuliert und dürfen nicht für die Therapie verwendet werden."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dit is de g7sim-ontwikkelemulator, geen echte Dexcom-sensor. De waarden zijn gesimuleerd en mogen niet voor therapie worden gebruikt."
           }
         }
       }
@@ -8455,6 +8711,22 @@
         }
       }
     },
+    "calibration is not allowed right now" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibrierung ist momentan nicht erlaubt"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kalibreren is op dit moment niet toegestaan"
+          }
+        }
+      }
+    },
     "day" : {
       "comment" : "Unit after a remaining-time number, singular",
       "localizations" : {
@@ -8532,6 +8804,54 @@
         }
       }
     },
+    "it already has this calibration" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "er hat diese Kalibrierung bereits"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hij heeft deze kalibratie al"
+          }
+        }
+      }
+    },
+    "it is older than the last calibration" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sie ist älter als die letzte Kalibrierung"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hij is ouder dan de laatste kalibratie"
+          }
+        }
+      }
+    },
+    "it is using its factory calibration" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "er verwendet seine Werkskalibrierung"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hij gebruikt zijn fabriekskalibratie"
+          }
+        }
+      }
+    },
     "min" : {
       "comment" : "Abbreviated minutes unit after a remaining-time number\nUnit after a remaining-time number, singular\nUnit after the minutes-since-last-reading number",
       "localizations" : {
@@ -8550,6 +8870,86 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "min"
+          }
+        }
+      }
+    },
+    "the reading is too old" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "der Wert ist zu alt"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de meting is te oud"
+          }
+        }
+      }
+    },
+    "the time is before the session started" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "die Zeit liegt vor dem Sitzungsbeginn"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "het tijdstip ligt vóór de start van de sessie"
+          }
+        }
+      }
+    },
+    "the time is in the future" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "die Zeit liegt in der Zukunft"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "het tijdstip ligt in de toekomst"
+          }
+        }
+      }
+    },
+    "the value is outside the range it accepts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "der Wert liegt außerhalb des akzeptierten Bereichs"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de waarde valt buiten het bereik dat hij accepteert"
+          }
+        }
+      }
+    },
+    "the value is too far from its own reading" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "der Wert weicht zu stark von seinem eigenen Messwert ab"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de waarde wijkt te veel af van zijn eigen meting"
           }
         }
       }

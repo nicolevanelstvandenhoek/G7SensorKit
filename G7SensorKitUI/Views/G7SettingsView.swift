@@ -743,14 +743,19 @@ if viewModel.sessionMode == .eavesdropping {
             }
             .accessibilityElement(children: .combine)
 
-            LazyVGrid(columns: [GridItem(.flexible(), spacing: 8), GridItem(.flexible(), spacing: 8)], spacing: 8) {
-                elaraTile(LocalizedString("Last reading", comment: "Label above the last reading row on the sensor card")) {
+            // A Grid (not a lazy grid) so both tiles in a row get the height of the taller one;
+            // the lazy grid let a two-line tile grow over its own heading.
+            Grid(horizontalSpacing: 8, verticalSpacing: 8) {
+                GridRow {
+                elaraTile(LocalizedString("Last reading", comment: "Label above the last reading row on the sensor card"), fillHeight: true) {
                     lastReadingTileValue
                 }
-                elaraTile(LocalizedString("Next reading", comment: "Elara sensor card tile: time until the next G7 reading")) {
+                elaraTile(LocalizedString("Next reading", comment: "Elara sensor card tile: time until the next G7 reading"), fillHeight: true) {
                     nextReadingTileValue
                 }
-                elaraTile(LocalizedString("Connection", comment: "Elara sensor card tile: Bluetooth connection status")) {
+                }
+                GridRow {
+                elaraTile(LocalizedString("Connection", comment: "Elara sensor card tile: Bluetooth connection status"), fillHeight: true) {
                     // Longer states wrap to a second line instead of being cut off
                     Text(connectionText)
                         .font(.system(size: 17, weight: .heavy))
@@ -758,11 +763,12 @@ if viewModel.sessionMode == .eavesdropping {
                         .minimumScaleFactor(0.8)
                         .fixedSize(horizontal: false, vertical: true)
                 }
-                elaraTile(LocalizedString("Sensor Expiration", comment: "title for g7 settings row showing sensor expiration time")) {
+                elaraTile(LocalizedString("Sensor Expiration", comment: "title for g7 settings row showing sensor expiration time"), fillHeight: true) {
                     Text(viewModel.activatedAt.map { timeFormatter.string(from: $0.addingTimeInterval(viewModel.lifetime)) } ?? "–")
                         .font(.system(size: 15, weight: .heavy))
                         .lineLimit(2)
                         .minimumScaleFactor(0.7)
+                }
                 }
             }
 
@@ -796,6 +802,7 @@ if viewModel.sessionMode == .eavesdropping {
     private func elaraTile<Content: View>(
         _ label: String,
         minHeight: CGFloat = 46,
+        fillHeight: Bool = false,
         @ViewBuilder content: () -> Content
     ) -> some View {
         VStack(alignment: .leading, spacing: 3) {
@@ -807,7 +814,7 @@ if viewModel.sessionMode == .eavesdropping {
                 .minimumScaleFactor(0.8)
             content()
         }
-        .frame(maxWidth: .infinity, minHeight: minHeight, alignment: .topLeading)
+        .frame(maxWidth: .infinity, minHeight: minHeight, maxHeight: fillHeight ? .infinity : nil, alignment: .topLeading)
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
         .background(
