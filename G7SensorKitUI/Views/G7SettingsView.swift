@@ -33,6 +33,9 @@ struct G7SettingsView: View {
     var pairCurrentSensor: (() -> Void)
     @ObservedObject var viewModel: G7SettingsViewModel
 
+    /// Bumped after choosing a site so the site tile reads the new value.
+    @State private var siteRevision = 0
+
     @Environment(\.appName) private var appName
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.colorScheme) private var colorScheme
@@ -773,28 +776,47 @@ if viewModel.sessionMode == .eavesdropping {
             }
 
             // Where the current sensor was placed (from the app's site log), across the full width
-            elaraTile(LocalizedString("Site", comment: "Elara sensor card tile: where the sensor was last placed"), minHeight: 0) {
-                HStack(alignment: .firstTextBaseline, spacing: 6) {
-                    Image(systemName: "sensor.tag.radiowaves.forward")
-                        .font(.system(size: 13, weight: .semibold))
-                        .foregroundColor(Color("LoopGreen"))
-                    if let site = UserDefaults.standard.string(forKey: "TrioElaraSensorSite") {
-                        Text(site)
-                            .font(.system(size: 15, weight: .heavy))
-                            .lineLimit(1)
-                        if let placedAt = UserDefaults.standard.object(forKey: "TrioElaraSensorSiteDate") as? Date {
-                            Text(timeFormatter.string(from: placedAt))
-                                .font(.caption)
-                                .foregroundColor(elaraMuted)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.7)
-                        }
-                    } else {
-                        Text("–").font(.system(size: 15, weight: .heavy))
+            // Tap to choose another site; the app stores it in its site log
+            let _ = siteRevision
+            Menu {
+                ForEach((UserDefaults.standard.array(forKey: "TrioElaraSensorSites") as? [[String: String]]) ?? [], id: \.self) { site in
+                    Button(site["label"] ?? "") {
+                        UserDefaults.standard.set(site["label"], forKey: "TrioElaraSensorSite")
+                        UserDefaults.standard.set(viewModel.activatedAt ?? Date(), forKey: "TrioElaraSensorSiteDate")
+                        var info: [String: Any] = ["kind": "sensor", "site": site["id"] ?? ""]
+                        if let activatedAt = viewModel.activatedAt { info["activatedAt"] = activatedAt }
+                        NotificationCenter.default.post(name: Notification.Name("TrioElaraSiteChosen"), object: nil, userInfo: info)
+                        siteRevision += 1
                     }
-                    Spacer(minLength: 0)
+                }
+            } label: {
+                elaraTile(LocalizedString("Site", comment: "Elara sensor card tile: where the sensor was last placed"), minHeight: 0) {
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Image(systemName: "sensor.tag.radiowaves.forward")
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundColor(Color("LoopGreen"))
+                        if let site = UserDefaults.standard.string(forKey: "TrioElaraSensorSite") {
+                            Text(site)
+                                .font(.system(size: 15, weight: .heavy))
+                                .lineLimit(1)
+                            if let placedAt = UserDefaults.standard.object(forKey: "TrioElaraSensorSiteDate") as? Date {
+                                Text(timeFormatter.string(from: placedAt))
+                                    .font(.caption)
+                                    .foregroundColor(elaraMuted)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.7)
+                            }
+                        } else {
+                            Text("–").font(.system(size: 15, weight: .heavy))
+                        }
+                        Spacer(minLength: 0)
+                        Image(systemName: "chevron.up.chevron.down")
+                            .font(.caption.weight(.semibold))
+                            .foregroundColor(.secondary)
+                    }
                 }
             }
+            .buttonStyle(.plain)
         }
         .padding(.vertical, 4)
     }
