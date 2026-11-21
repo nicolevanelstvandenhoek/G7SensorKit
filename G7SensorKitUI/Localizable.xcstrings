@@ -4235,6 +4235,23 @@
         }
       }
     },
+    "Lot Number" : {
+      "comment" : "Row label for the sensor's lot number from the scanned applicator",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargennummer"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lotnummer"
+          }
+        }
+      }
+    },
     "Low" : {
       "comment" : "Follower alert: low",
       "localizations" : {

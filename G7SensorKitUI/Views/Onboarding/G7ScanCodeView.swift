@@ -155,6 +155,9 @@ struct G7ScanCodeView: View {
         guard !hasScanned, let pairingCode = package.pairingCode else { return }
 
         hasScanned = true
+        if let lot = package.lot, !lot.isEmpty {
+            G7SensorLotStore.save(lot: lot, serial: package.serial, pairingCode: pairingCode)
+        }
         didScanCode(pairingCode, package.serial)
     }
 }

@@ -282,6 +282,13 @@ if viewModel.sessionMode == .eavesdropping {
                     value: serialNumber
                 )
             }
+            if viewModel.serialNumber != nil || viewModel.pairingCode != nil {
+                // Only known when the applicator code was scanned at pairing.
+                LabeledValueView(
+                    label: LocalizedString("Lot Number", comment: "Row label for the sensor's lot number from the scanned applicator"),
+                    value: G7SensorLotStore.lot(serial: viewModel.serialNumber, pairingCode: viewModel.pairingCode) ?? "—"
+                )
+            }
             if viewModel.sessionMode == .direct, let pairingCode = viewModel.pairingCode {
                 // The applicator gets thrown away; this is where the code
                 // lives afterwards, for pairing the same sensor elsewhere.

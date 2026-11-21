@@ -55,6 +55,29 @@ public struct G7SensorPackage: Equatable {
     }
 }
 
+/// Lot numbers read from scanned applicators. The sensor does not send its lot over
+/// Bluetooth, so the scan at pairing is the only source; it is kept by serial and by
+/// pairing code so the settings screen can find it for the sensor in use.
+public enum G7SensorLotStore {
+    private static let key = "G7SensorLotNumbers"
+
+    public static func save(lot: String, serial: String?, pairingCode: String?) {
+        var stored = UserDefaults.standard.dictionary(forKey: key) as? [String: String] ?? [:]
+        if let serial, !serial.isEmpty { stored["serial:" + serial] = lot }
+        if let pairingCode, !pairingCode.isEmpty { stored["code:" + pairingCode] = lot }
+        // Keep the list short: only the most recent sensors matter.
+        if stored.count > 40 { stored = Dictionary(uniqueKeysWithValues: stored.suffix(20).map { ($0.key, $0.value) }) }
+        UserDefaults.standard.set(stored, forKey: key)
+    }
+
+    public static func lot(serial: String?, pairingCode: String?) -> String? {
+        let stored = UserDefaults.standard.dictionary(forKey: key) as? [String: String] ?? [:]
+        if let serial, let lot = stored["serial:" + serial] { return lot }
+        if let pairingCode, let lot = stored["code:" + pairingCode] { return lot }
+        return nil
+    }
+}
+
 /// A minimal GS1 element-string parser: enough of the application identifier
 /// table to read a sensor applicator.
 ///
