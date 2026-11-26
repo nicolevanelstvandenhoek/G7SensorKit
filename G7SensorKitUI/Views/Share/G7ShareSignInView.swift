@@ -34,36 +34,39 @@ struct G7ShareSignInView: View {
 
     var body: some View {
         List {
-            Section {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(String(format: LocalizedString("%1$@ can send readings to Dexcom Share, so your followers keep seeing your glucose in the Dexcom Follow app without the Dexcom app on this phone.", comment: "Share sign-in explanation (1: appName)"), appName))
-                        .fixedSize(horizontal: false, vertical: true)
-                    Text(LocalizedString("Sign in with the Dexcom account that owns the sensor. The password is kept in the keychain on this phone only.", comment: "Share sign-in: which account, where the password goes"))
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
+            Group {
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(String(format: LocalizedString("%1$@ can send readings to Dexcom Share, so your followers keep seeing your glucose in the Dexcom Follow app without the Dexcom app on this phone.", comment: "Share sign-in explanation (1: appName)"), appName))
+                            .fixedSize(horizontal: false, vertical: true)
+                        Text(LocalizedString("Sign in with the Dexcom account that owns the sensor. The password is kept in the keychain on this phone only.", comment: "Share sign-in: which account, where the password goes"))
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .padding(.vertical, 4)
                 }
-                .padding(.vertical, 4)
-            }
 
-            Section {
-                TextField(LocalizedString("Username or email", comment: "Share sign-in field placeholder"), text: $username)
-                    .textContentType(.username)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                SecureField(LocalizedString("Password", comment: "Share sign-in field placeholder"), text: $password)
-                    .textContentType(.password)
-                Picker(LocalizedString("Region", comment: "Share sign-in server picker label"), selection: $server) {
-                    ForEach(G7ShareServer.allCases, id: \.self) { server in
-                        Text(server.localizedName).tag(server)
+                Section {
+                    TextField(LocalizedString("Username or email", comment: "Share sign-in field placeholder"), text: $username)
+                        .textContentType(.username)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                    SecureField(LocalizedString("Password", comment: "Share sign-in field placeholder"), text: $password)
+                        .textContentType(.password)
+                    Picker(LocalizedString("Region", comment: "Share sign-in server picker label"), selection: $server) {
+                        ForEach(G7ShareServer.allCases, id: \.self) { server in
+                            Text(server.localizedName).tag(server)
+                        }
+                    }
+                } footer: {
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(guidanceColors.critical)
                     }
                 }
-            } footer: {
-                if let errorMessage = errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(guidanceColors.critical)
-                }
             }
+            .elaraRows()
         }
         .insetGroupedListStyle()
         .safeAreaInset(edge: .bottom) {

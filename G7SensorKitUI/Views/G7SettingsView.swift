@@ -66,114 +66,117 @@ struct G7SettingsView: View {
     var body: some View {
         List {
             Group {
-            Section() {
-                if isElara {
-                    elaraSensorCard
-                } else {
-                    sensorCard
+                Group {
+                Section() {
+                    if isElara {
+                        elaraSensorCard
+                    } else {
+                        sensorCard
+                    }
+                    if let message = sessionMessage {
+                        Text(message)
+                            .font(.subheadline)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
-                if let message = sessionMessage {
-                    Text(message)
-                        .font(.subheadline)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
 
-            sensorSection
-            if let activatedAt = viewModel.activatedAt {
-                HStack {
-                    Text(LocalizedString("Sensor Start", comment: "title for g7 settings row showing sensor start time"))
-                    Spacer()
-                    Text(timeFormatter.string(from: activatedAt))
-                        .foregroundColor(.secondary)
-                }
-                HStack {
-                    Text(LocalizedString("Sensor Expiration", comment: "title for g7 settings row showing sensor expiration time"))
-                    Spacer()
-                    Text(timeFormatter.string(from: activatedAt.addingTimeInterval(viewModel.lifetime)))
-                        .foregroundColor(.secondary)
-                }
-                HStack {
-                    Text(LocalizedString("Grace Period End", comment: "title for g7 settings row showing sensor grace period end time"))
-                    Spacer()
-                    Text(timeFormatter.string(from: activatedAt.addingTimeInterval(viewModel.lifetime + G7Sensor.gracePeriod)))
-                        .foregroundColor(.secondary)
-                }
-            }
-
-            Section("Bluetooth") {
-                if let name = viewModel.sensorName {
+                sensorSection
+                if let activatedAt = viewModel.activatedAt {
                     HStack {
-                        Text(LocalizedString("Name", comment: "title for g7 settings row showing BLE Name"))
+                        Text(LocalizedString("Sensor Start", comment: "title for g7 settings row showing sensor start time"))
                         Spacer()
-                        Text(name)
+                        Text(timeFormatter.string(from: activatedAt))
+                            .foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text(LocalizedString("Sensor Expiration", comment: "title for g7 settings row showing sensor expiration time"))
+                        Spacer()
+                        Text(timeFormatter.string(from: activatedAt.addingTimeInterval(viewModel.lifetime)))
+                            .foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text(LocalizedString("Grace Period End", comment: "title for g7 settings row showing sensor grace period end time"))
+                        Spacer()
+                        Text(timeFormatter.string(from: activatedAt.addingTimeInterval(viewModel.lifetime + G7Sensor.gracePeriod)))
                             .foregroundColor(.secondary)
                     }
                 }
-                if viewModel.scanning {
-                    HStack {
-                        Text(LocalizedString("Scanning", comment: "title for g7 settings connection status when scanning"))
-                        Spacer()
-                        SwiftUI.ProgressView()
-                    }
-                } else {
-                    if viewModel.connected {
-                        Text(LocalizedString("Connected", comment: "title for g7 settings connection status when connected"))
-                    } else if viewModel.sessionMode == .direct {
-                        // The sensor drops the link between readings; a spinner
-                        // here would spin ~95% of the time and read as broken.
-                        Text(LocalizedString("Waiting for next reading", comment: "title for g7 settings connection status between readings in direct mode"))
-                    } else {
+
+                Section("Bluetooth") {
+                    if let name = viewModel.sensorName {
                         HStack {
-                            Text(LocalizedString("Connecting", comment: "title for g7 settings connection status when connecting"))
+                            Text(LocalizedString("Name", comment: "title for g7 settings row showing BLE Name"))
+                            Spacer()
+                            Text(name)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    if viewModel.scanning {
+                        HStack {
+                            Text(LocalizedString("Scanning", comment: "title for g7 settings connection status when scanning"))
                             Spacer()
                             SwiftUI.ProgressView()
                         }
-                    }
-                }
-                if let lastConnect = viewModel.lastConnect {
-                    LabeledValueView(label: LocalizedString("Last Connect", comment: "title for g7 settings row showing sensor last connect time"),
-                                     value: timeFormatter.string(from: lastConnect))
-                }
-            }
-
-if viewModel.sessionMode == .eavesdropping {
-                Section () {
-                    Button(LocalizedString("Open Dexcom App", comment:"Opens the dexcom G7 app to allow users to manage active sensors"), action: {
-                        G7DexcomApp.open()
-                    })
-                }
-            }
-
-            if viewModel.showsWatchDirectRead {
-                watchDirectReadSection
-            }
-
-            if viewModel.sessionMode == .direct {
-                calibrationSection
-                shareSection
-            }
-
-            Section () {
-                switch viewModel.sessionMode {
-                case .direct:
-                    Button(LocalizedString("Pair New Sensor", comment: "Button title in settings to pair a replacement sensor"), action: pairNewSensor)
-                    Button(LocalizedString("Use with the Dexcom App Instead", comment: "Button title in settings to go back to reading through the Dexcom app"), action: { showingDexcomAppModeConfirmation = true })
-                case .eavesdropping:
-                    if !self.viewModel.scanning {
-                        Button(
-                            LocalizedString("Scan for new sensor", comment: "Button title to scan for a new G7 sensor"),
-                            action: {
-                                self.viewModel.scanForNewSensor()
+                    } else {
+                        if viewModel.connected {
+                            Text(LocalizedString("Connected", comment: "title for g7 settings connection status when connected"))
+                        } else if viewModel.sessionMode == .direct {
+                            // The sensor drops the link between readings; a spinner
+                            // here would spin ~95% of the time and read as broken.
+                            Text(LocalizedString("Waiting for next reading", comment: "title for g7 settings connection status between readings in direct mode"))
+                        } else {
+                            HStack {
+                                Text(LocalizedString("Connecting", comment: "title for g7 settings connection status when connecting"))
+                                Spacer()
+                                SwiftUI.ProgressView()
                             }
-                        )
+                        }
+                    }
+                    if let lastConnect = viewModel.lastConnect {
+                        LabeledValueView(label: LocalizedString("Last Connect", comment: "title for g7 settings row showing sensor last connect time"),
+                                         value: timeFormatter.string(from: lastConnect))
                     }
                 }
 
-                deleteCGMButton
+    if viewModel.sessionMode == .eavesdropping {
+                    Section () {
+                        Button(LocalizedString("Open Dexcom App", comment:"Opens the dexcom G7 app to allow users to manage active sensors"), action: {
+                            G7DexcomApp.open()
+                        })
+                    }
+                }
+
+                if viewModel.showsWatchDirectRead {
+                    watchDirectReadSection
+                }
+
+                if viewModel.sessionMode == .direct {
+                    calibrationSection
+                    shareSection
+                }
+
+                Section () {
+                    switch viewModel.sessionMode {
+                    case .direct:
+                        Button(LocalizedString("Pair New Sensor", comment: "Button title in settings to pair a replacement sensor"), action: pairNewSensor)
+                        Button(LocalizedString("Use with the Dexcom App Instead", comment: "Button title in settings to go back to reading through the Dexcom app"), action: { showingDexcomAppModeConfirmation = true })
+                    case .eavesdropping:
+                        if !self.viewModel.scanning {
+                            Button(
+                                LocalizedString("Scan for new sensor", comment: "Button title to scan for a new G7 sensor"),
+                                action: {
+                                    self.viewModel.scanForNewSensor()
+                                }
+                            )
+                        }
+                    }
+
+                    deleteCGMButton
+                }
+                }
+                .listRowBackground(isElara ? elaraCardFill : nil)
             }
-            }
-            .listRowBackground(isElara ? elaraCardFill : nil)
+            .elaraRows()
         }
         .insetGroupedListStyle()
         .scrollContentBackground(isElara ? .hidden : .automatic)
@@ -689,7 +692,7 @@ if viewModel.sessionMode == .eavesdropping {
     }
 
     private var elaraCardFill: Color {
-        colorScheme == .dark ? Color.white.opacity(0.06) : Color.white.opacity(0.8)
+        colorScheme == .dark ? Color.white.opacity(0.05) : Color.white.opacity(0.72)
     }
 
     private var elaraBackground: LinearGradient {

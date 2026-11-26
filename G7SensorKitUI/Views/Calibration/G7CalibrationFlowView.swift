@@ -156,36 +156,39 @@ struct G7CalibrationEntryView: View {
 
     var body: some View {
         List {
-            Section {
-                HStack {
-                    Text(LocalizedString("Sensor Reading", comment: "Calibration entry row: the sensor's current value"))
-                    Spacer()
-                    Text(viewModel.lastGlucoseMgdl.map { viewModel.formatGlucose(mgdl: $0) } ?? "–")
-                        .foregroundColor(.secondary)
-                    if !viewModel.lastGlucoseTrendString.isEmpty {
-                        Text(viewModel.lastGlucoseTrendString)
-                            .foregroundColor(.secondary)
-                    }
-                }
-                HStack {
-                    Text(LocalizedString("Meter Value", comment: "Calibration entry row: the fingerstick value field"))
-                    Spacer()
-                    TextField(viewModel.glucoseUnitString, text: $text)
-                        .keyboardType(.decimalPad)
-                        .multilineTextAlignment(.trailing)
-                        .focused($fieldFocused)
-                }
-                if let difference = differenceMgdl, isValid {
+            Group {
+                Section {
                     HStack {
-                        Text(LocalizedString("Difference", comment: "Calibration entry row: meter minus sensor"))
+                        Text(LocalizedString("Sensor Reading", comment: "Calibration entry row: the sensor's current value"))
                         Spacer()
-                        Text((difference >= 0 ? "+" : "−") + viewModel.formatGlucose(mgdl: abs(difference)))
-                            .foregroundColor(abs(difference) >= G7CalibrationEntryView.largeDifferenceMgdl ? guidanceColors.warning : .secondary)
+                        Text(viewModel.lastGlucoseMgdl.map { viewModel.formatGlucose(mgdl: $0) } ?? "–")
+                            .foregroundColor(.secondary)
+                        if !viewModel.lastGlucoseTrendString.isEmpty {
+                            Text(viewModel.lastGlucoseTrendString)
+                                .foregroundColor(.secondary)
+                        }
                     }
+                    HStack {
+                        Text(LocalizedString("Meter Value", comment: "Calibration entry row: the fingerstick value field"))
+                        Spacer()
+                        TextField(viewModel.glucoseUnitString, text: $text)
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                            .focused($fieldFocused)
+                    }
+                    if let difference = differenceMgdl, isValid {
+                        HStack {
+                            Text(LocalizedString("Difference", comment: "Calibration entry row: meter minus sensor"))
+                            Spacer()
+                            Text((difference >= 0 ? "+" : "−") + viewModel.formatGlucose(mgdl: abs(difference)))
+                                .foregroundColor(abs(difference) >= G7CalibrationEntryView.largeDifferenceMgdl ? guidanceColors.warning : .secondary)
+                        }
+                    }
+                } footer: {
+                    Text(LocalizedString("The sensor connects for a few seconds around each reading, so the calibration is sent at the next one, within about five minutes. Until then you can cancel it from the settings screen.", comment: "Calibration entry footer: when the value is sent"))
                 }
-            } footer: {
-                Text(LocalizedString("The sensor connects for a few seconds around each reading, so the calibration is sent at the next one, within about five minutes. Until then you can cancel it from the settings screen.", comment: "Calibration entry footer: when the value is sent"))
             }
+            .elaraRows()
         }
         .insetGroupedListStyle()
         .safeAreaInset(edge: .bottom) {
