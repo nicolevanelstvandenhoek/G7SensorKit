@@ -297,6 +297,9 @@
         }
       }
     },
+    "%1$@ failed" : {
+      "comment" : "Next sensor row value after it reported a failure (1: sensor name)"
+    },
     "%1$@ is connected to the sensor directly and does not need the %2$@ app. A sensor works with only one app at a time, so it will take readings away for as long as it is on this phone. Delete it, or offload it under Settings, General, iPhone Storage." : {
       "comment" : "Body of the settings warning when a Dexcom app is installed in direct mode (1: appName, 2: Dexcom app name)",
       "localizations" : {
@@ -340,6 +343,15 @@
           }
         }
       }
+    },
+    "%1$@ takes over now, even if it is still warming up." : {
+      "comment" : "Message of the stop confirmation with a next sensor paired (1: its name)"
+    },
+    "%1$@ takes over once warmed up" : {
+      "comment" : "Next sensor row value before its first reading (1: sensor name)"
+    },
+    "%1$@ warming up" : {
+      "comment" : "Next sensor row value while it warms up (1: sensor name)"
     },
     "%1$@ will let go of the sensor and read through the Dexcom app's session again. Glucose and sensor alerts then come from the Dexcom app, and %1$@ stops uploading to Dexcom Share. You can pair directly again later with the sensor's code." : {
       "comment" : "Message of the confirmation for switching back to the Dexcom app's session (1: appName)",
@@ -411,7 +423,8 @@
             "value" : "4-cijferige code"
           }
         }
-      }
+      },
+      "comment" : "Placeholder for the G7 pairing code entry for the watch"
     },
     "A big difference is a reason for caution, not a reason to calibrate" : {
       "comment" : "Calibration advice heading: large differences",
@@ -545,6 +558,9 @@
         }
       }
     },
+    "After You Calibrate" : {
+      "comment" : "Calibration after-page: navigation title and header text"
+    },
     "Alerts" : {
       "comment" : "Navigation title of the alerts hand-off page",
       "localizations" : {
@@ -658,7 +674,8 @@
             "value" : "Apple Watch"
           }
         }
-      }
+      },
+      "comment" : "Section title for the watch reading the G7 itself"
     },
     "Apply the Sensor" : {
       "comment" : "Title of the apply-sensor screen",
@@ -826,7 +843,7 @@
       }
     },
     "Before You Calibrate" : {
-      "comment" : "Title of the calibration advice page",
+      "comment" : "Calibration why-page: navigation title and header text\nNavigation title of the full calibration advice sheet",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -1040,7 +1057,7 @@
       }
     },
     "Calibrate" : {
-      "comment" : "Button title to send the calibration\nButton title to start calibrating the sensor\nNavigation title of the calibration pages",
+      "comment" : "Button title to send the calibration\nButton title to start calibrating the sensor",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -1750,7 +1767,7 @@
       }
     },
     "Connecting" : {
-      "comment" : "Status of the G7 sensor being connected to\ntitle for g7 settings connection status when connecting",
+      "comment" : "title for g7 settings connection status when connecting",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1893,7 +1910,7 @@
       }
     },
     "Connecting…" : {
-      "comment" : "Pairing status while connecting to a sensor",
+      "comment" : "Pairing status once a sensor has been found",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -2439,7 +2456,7 @@
       }
     },
     "Dexcom Share" : {
-      "comment" : "Navigation title of the Share sign-in page",
+      "comment" : "Navigation title of the Share sign-in page\nSection header for Dexcom Share upload",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -2493,6 +2510,15 @@
         }
       }
     },
+    "Discard" : {
+      "comment" : "Confirmation button to drop the next sensor"
+    },
+    "Discard Next Sensor" : {
+      "comment" : "Button to drop the sensor paired to take over"
+    },
+    "Discard Next Sensor?" : {
+      "comment" : "Title of the confirmation for dropping the next sensor"
+    },
     "Do not let a Dexcom app use this sensor from now on. A sensor works with only one app at a time." : {
       "comment" : "Reminder on the pairing success screen",
       "localizations" : {
@@ -2527,7 +2553,7 @@
       }
     },
     "Done" : {
-      "comment" : "Button title to finish setup",
+      "comment" : "Button title to finish setup\nButton to dismiss a sheet",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2744,7 +2770,8 @@
             "value" : "Ingevoerd %1$@, geweigerd door de sensor: %2$@"
           }
         }
-      }
+      },
+      "comment" : "Calibration outcome: rejected (1: time entered, 2: the sensor's reason)"
     },
     "Entered %@, not sent: the sensor did not connect within 5 minutes" : {
       "localizations" : {
@@ -2760,7 +2787,8 @@
             "value" : "Ingevoerd %@, niet verzonden: de sensor maakte binnen 5 minuten geen verbinding"
           }
         }
-      }
+      },
+      "comment" : "Calibration outcome: dropped because the sensor did not connect in time (1: time entered)"
     },
     "Entered %@, waiting for the sensor's next connection" : {
       "comment" : "Calibration outcome: pending (1: time entered)",
@@ -2772,6 +2800,9 @@
           }
         }
       }
+    },
+    "Failed" : {
+      "comment" : "Row label for when the previous sensor failed"
     },
     "Fingersticks only" : {
       "comment" : "Calibration advice heading: fingersticks only",
@@ -3462,7 +3493,8 @@
             "value" : "Waarschuwing verbergen"
           }
         }
-      }
+      },
+      "comment" : "Button to hide the simulated-sensor warning"
     },
     "Hide this warning? Readings uploaded from this sensor stay marked as simulated. Hiding it is for development screenshots only." : {
       "localizations" : {
@@ -3478,7 +3510,8 @@
             "value" : "Deze waarschuwing verbergen? Waarden die vanaf deze sensor worden geüpload, blijven gemarkeerd als gesimuleerd. Verbergen is alleen bedoeld voor screenshots tijdens ontwikkeling."
           }
         }
-      }
+      },
+      "comment" : "Message of the sheet to hide the simulated-sensor warning"
     },
     "High" : {
       "comment" : "Follower alert: high",
@@ -3545,6 +3578,9 @@
           }
         }
       }
+    },
+    "How to Calibrate" : {
+      "comment" : "Calibration how-page: navigation title and header text"
     },
     "I've Removed It" : {
       "comment" : "Button title to confirm the Dexcom app was deleted or offloaded",
@@ -4471,7 +4507,8 @@
             "value" : "Nodig"
           }
         }
-      }
+      },
+      "comment" : "Watch direct read pairing code status when the code has not been entered"
     },
     "New Sensor" : {
       "comment" : "Navigation title of the apply-sensor screen",
@@ -4483,6 +4520,9 @@
           }
         }
       }
+    },
+    "Next Sensor" : {
+      "comment" : "Row label for a sensor paired while the current one still reads"
     },
     "Next reading" : {
       "localizations" : {
@@ -4520,7 +4560,8 @@
             "value" : "Volgende meting over %1$@"
           }
         }
-      }
+      },
+      "comment" : "Accessibility label for the countdown to the next G7 reading (1: duration)"
     },
     "No Data (1 hour)" : {
       "comment" : "Follower alert: no data",
@@ -4558,7 +4599,8 @@
             "value" : "Geen sensor"
           }
         }
-      }
+      },
+      "comment" : "Watch direct read pairing code status when there is no sensor"
     },
     "No sensor paired" : {
       "comment" : "Sensor card label when the CGM has been added but no sensor paired",
@@ -4637,6 +4679,9 @@
         }
       }
     },
+    "OK" : {
+      "comment" : "Alert acknowledgment button label"
+    },
     "OPTION %d" : {
       "comment" : "Label numbering a way to stop the Dexcom app (1: number)",
       "localizations" : {
@@ -4680,6 +4725,9 @@
           }
         }
       }
+    },
+    "Once accepted, the sensor applies the calibration over the next couple of readings, so the change does not show at once. Do not calibrate again to chase it." : {
+      "comment" : "Calibration advice: applying"
     },
     "Only when glucose is stable" : {
       "comment" : "Calibration advice heading: stability",
@@ -4919,7 +4967,7 @@
       }
     },
     "Paired" : {
-      "comment" : "Navigation title of the pairing success screen\nPairing status on success\nRow label for when the sensor was paired\nStatus of the G7 sensor that paired",
+      "comment" : "Navigation title of the pairing success screen\nPairing status on success\nRow label for when the sensor was paired",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -4941,7 +4989,7 @@
       }
     },
     "Pairing Code" : {
-      "comment" : "Navigation title of the pairing code entry screen\nRow label for the sensor's pairing code",
+      "comment" : "Label for the pairing code status in the watch direct read section\nNavigation title of the pairing code entry screen\nRow label for the sensor's pairing code",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -5028,6 +5076,9 @@
         }
       }
     },
+    "Read Before Calibrating" : {
+      "comment" : "Button on the calibration entry page that opens the full advice"
+    },
     "Read on Apple Watch" : {
       "localizations" : {
         "de" : {
@@ -5042,7 +5093,11 @@
             "value" : "Lezen op Apple Watch"
           }
         }
-      }
+      },
+      "comment" : "Toggle for the watch reading the G7 directly"
+    },
+    "Readings adjust gradually" : {
+      "comment" : "Calibration advice heading: applying"
     },
     "Region" : {
       "comment" : "Share sign-in server picker label",
@@ -5157,7 +5212,8 @@
             "value" : "Bewaar"
           }
         }
-      }
+      },
+      "comment" : "Button to save the G7 pairing code for the watch"
     },
     "Saved" : {
       "localizations" : {
@@ -5173,7 +5229,8 @@
             "value" : "Bewaard"
           }
         }
-      }
+      },
+      "comment" : "Watch direct read pairing code status when the code has been entered"
     },
     "Scan Applicator" : {
       "comment" : "Button title to scan the applicator barcode\nNavigation title of the applicator scanner",
@@ -5775,7 +5832,7 @@
       }
     },
     "Searching for sensor…" : {
-      "comment" : "Pairing status while scanning",
+      "comment" : "Pairing status while scanning with no sensor found yet",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -6561,6 +6618,9 @@
         }
       }
     },
+    "Sensor Issue" : {
+      "comment" : "Last reading row text while the sensor reports a temporary issue\nSettings warning title while the sensor reports a temporary issue"
+    },
     "Sensor Paired" : {
       "comment" : "Title of the pairing success screen",
       "localizations" : {
@@ -7234,6 +7294,9 @@
         }
       }
     },
+    "Sent at the next reading" : {
+      "comment" : "Calibration advice heading: when it is sent"
+    },
     "Serial Number" : {
       "comment" : "title for g7 settings row showing the sensor serial number",
       "localizations" : {
@@ -7255,6 +7318,9 @@
           }
         }
       }
+    },
+    "Session Ended" : {
+      "comment" : "Row label for when the previous sensor's session ended"
     },
     "Session Length" : {
       "comment" : "Row label for the sensor's session length",
@@ -7512,7 +7578,8 @@
             "value" : "Gesimuleerde sensor"
           }
         }
-      }
+      },
+      "comment" : "Settings warning title when connected to the g7sim emulator\nTitle of the sheet to hide the simulated-sensor warning"
     },
     "Site" : {
       "comment" : "Elara sensor card tile: where the sensor was last placed",
@@ -7586,6 +7653,15 @@
         }
       }
     },
+    "Stop Current Sensor" : {
+      "comment" : "Button to stop reading the current sensor"
+    },
+    "Stop Current Sensor?" : {
+      "comment" : "Title of the confirmation for stopping the current sensor"
+    },
+    "Stop Sensor" : {
+      "comment" : "Confirmation button to stop the current sensor"
+    },
     "Stop the %@ App" : {
       "comment" : "Title of the settings warning when a Dexcom app is installed in direct mode (1: app name)",
       "localizations" : {
@@ -7596,6 +7672,9 @@
           }
         }
       }
+    },
+    "Stopped" : {
+      "comment" : "Row label for when the user stopped the previous sensor"
     },
     "Switch to the Dexcom App" : {
       "comment" : "Confirmation button to switch back to the Dexcom app's session",
@@ -7641,6 +7720,12 @@
         }
       }
     },
+    "The %@ is factory calibrated and does not need calibrating. Calibrating tells the sensor to trust your meter over itself, so it is only worth doing when a small, steady offset has been there for hours and you have confirmed it with more than one fingerstick." : {
+      "comment" : "Calibration advice: calibration is optional (1: sensor model, e.g. G7)"
+    },
+    "The %@ is factory calibrated. Calibrate only when glucose is steady." : {
+      "comment" : "Calibration entry: caution shown every time (1: sensor model, e.g. G7)"
+    },
     "The G7 integration raises these itself and delivers them as %1$@ notifications:" : {
       "comment" : "Sensor alerts paragraph of the alerts hand-off page (1: appName)",
       "localizations" : {
@@ -7685,6 +7770,9 @@
         }
       }
     },
+    "The current sensor stays in use. Pair the new sensor again to have it take over." : {
+      "comment" : "Message of the confirmation for dropping the next sensor"
+    },
     "The meter value is %1$@ from the sensor reading. A gap this large is usually temporary, and calibrating to it makes a large correction that swings the readings the other way once the cause passes. Wait and check again; keep any calibration within %2$@ of the reading, or replace the sensor if the gap stays this large." : {
       "comment" : "Message of the large difference alert (1: difference with unit, 2: recommended limit with unit)",
       "localizations" : {
@@ -7696,6 +7784,12 @@
         }
       }
     },
+    "The sensor checks every calibration and can turn one down, for example when the value is too far from its own reading. The settings screen shows whether it was accepted and, if not, why." : {
+      "comment" : "Calibration advice: refusals"
+    },
+    "The sensor connects for a few seconds about every five minutes, and the calibration goes with the next connection. If the sensor has not connected within five minutes, the calibration is dropped and you can enter it again. Until it is sent you can cancel it from the settings screen." : {
+      "comment" : "Calibration advice: when it is sent"
+    },
     "The sensor connects for a few seconds around each reading, so the calibration is sent at the next one, within about five minutes. Until then you can cancel it from the settings screen." : {
       "comment" : "Calibration entry footer: when the value is sent",
       "localizations" : {
@@ -7706,6 +7800,9 @@
           }
         }
       }
+    },
+    "The sensor is no longer read. Pair a new sensor to get readings again." : {
+      "comment" : "Message of the stop confirmation without a next sensor"
     },
     "The sensor is reporting a temporary problem and is not sending glucose readings. They usually come back on their own, which can take up to 3 hours; you do not need to remove the sensor. Use a meter for treatment decisions until they do." : {
       "localizations" : {
@@ -7721,7 +7818,11 @@
             "value" : "De sensor meldt een tijdelijk probleem en stuurt geen glucosewaarden. Meestal komen ze vanzelf terug; dat kan tot 3 uur duren. Je hoeft de sensor niet te verwijderen. Gebruik tot die tijd een bloedglucosemeter voor behandelbeslissingen."
           }
         }
-      }
+      },
+      "comment" : "Settings warning body while the sensor reports a temporary issue"
+    },
+    "The sensor may refuse it" : {
+      "comment" : "Calibration advice heading: refusals"
     },
     "The sensor refuses calibrations during warmup, and readings are still settling for the first 12 to 24 hours. Give it a day before deciding it is off." : {
       "comment" : "Calibration advice: timing",
@@ -7759,7 +7860,8 @@
             "value" : "De Watch leest deze sensor zelf uit, zodat de metingen op de Watch doorgaan als je telefoon er niet is. De Watch gebruikt daarvoor de Watch-plek van de sensor, dus de Dexcom Watch-app kan hem niet tegelijk uitlezen."
           }
         }
-      }
+      },
+      "comment" : "Footer explaining the watch reading the G7 directly"
     },
     "This is the g7sim development emulator, not a genuine Dexcom sensor. Its readings are simulated and must not be used for therapy." : {
       "localizations" : {
@@ -7775,7 +7877,8 @@
             "value" : "Dit is de g7sim-ontwikkelemulator, geen echte Dexcom-sensor. De waarden zijn gesimuleerd en mogen niet voor therapie worden gebruikt."
           }
         }
-      }
+      },
+      "comment" : "Settings warning body when connected to the g7sim emulator"
     },
     "This sensor has been used by the Dexcom app. Wait about 15 minutes after it last connected, then pair." : {
       "comment" : "Dexcom app warning: lease wait when moving an existing session",
@@ -7787,6 +7890,9 @@
           }
         }
       }
+    },
+    "This sensor is less than a day old, and its readings may still be settling." : {
+      "comment" : "Calibration entry warning: sensor in its first day"
     },
     "Time" : {
       "comment" : "Field label",
@@ -8344,7 +8450,7 @@
       }
     },
     "Use with the Dexcom App Instead" : {
-      "comment" : "Button title to set up in eavesdropping mode alongside the Dexcom app",
+      "comment" : "Button title in settings to go back to reading through the Dexcom app\nButton title to set up in eavesdropping mode alongside the Dexcom app",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -8742,7 +8848,8 @@
             "value" : "kalibreren is op dit moment niet toegestaan"
           }
         }
-      }
+      },
+      "comment" : "Calibration refusal reason: not permitted"
     },
     "day" : {
       "comment" : "Unit after a remaining-time number, singular",
@@ -8835,7 +8942,8 @@
             "value" : "hij heeft deze kalibratie al"
           }
         }
-      }
+      },
+      "comment" : "Calibration refusal reason: duplicate"
     },
     "it is older than the last calibration" : {
       "localizations" : {
@@ -8851,7 +8959,8 @@
             "value" : "hij is ouder dan de laatste kalibratie"
           }
         }
-      }
+      },
+      "comment" : "Calibration refusal reason: not in order"
     },
     "it is using its factory calibration" : {
       "localizations" : {
@@ -8867,7 +8976,8 @@
             "value" : "hij gebruikt zijn fabriekskalibratie"
           }
         }
-      }
+      },
+      "comment" : "Calibration refusal reason: factory calibrated"
     },
     "min" : {
       "comment" : "Abbreviated minutes unit after a remaining-time number\nUnit after a remaining-time number, singular\nUnit after the minutes-since-last-reading number",
@@ -8905,7 +9015,8 @@
             "value" : "de meting is te oud"
           }
         }
-      }
+      },
+      "comment" : "Calibration refusal reason: stale"
     },
     "the time is before the session started" : {
       "localizations" : {
@@ -8921,7 +9032,8 @@
             "value" : "het tijdstip ligt vóór de start van de sessie"
           }
         }
-      }
+      },
+      "comment" : "Calibration refusal reason: earlier than session start"
     },
     "the time is in the future" : {
       "localizations" : {
@@ -8937,7 +9049,8 @@
             "value" : "het tijdstip ligt in de toekomst"
           }
         }
-      }
+      },
+      "comment" : "Calibration refusal reason: timestamp in future"
     },
     "the value is outside the range it accepts" : {
       "localizations" : {
@@ -8953,7 +9066,8 @@
             "value" : "de waarde valt buiten het bereik dat hij accepteert"
           }
         }
-      }
+      },
+      "comment" : "Calibration refusal reason: outside range"
     },
     "the value is too far from its own reading" : {
       "localizations" : {
@@ -8969,7 +9083,8 @@
             "value" : "de waarde wijkt te veel af van zijn eigen meting"
           }
         }
-      }
+      },
+      "comment" : "Calibration refusal reason: outlier"
     },
     "– – –" : {
       "comment" : "No glucose value representation (3 dashes for mg/dL)",

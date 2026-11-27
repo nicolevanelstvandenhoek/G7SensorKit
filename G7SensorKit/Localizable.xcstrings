@@ -396,6 +396,9 @@
         }
       }
     },
+    "Enter its pairing code in the Dexcom G7 settings so the watch can read it without your phone. The code is shown in the Dexcom app." : {
+      "comment" : "Alert body asking for a new G7's pairing code for the watch"
+    },
     "Glucose data is unavailable" : {
       "comment" : "Error description for unreliable state",
       "localizations" : {
@@ -562,6 +565,26 @@
         }
       }
     },
+    "Looking for your sensor. Keep the app open; this takes about 5 minutes. If your watch asks to pair with the sensor, accept." : {
+      "comment" : "Watch note while it searches for a G7 it has never connected to"
+    },
+    "New Sensor %1$@" : {
+      "comment" : "Alert title asking for a new G7's pairing code for the watch (1: sensor name)"
+    },
+    "Next Sensor %1$@ Failed" : {
+      "comment" : "Alert title when the sensor paired to take over failed (1: sensor name)"
+    },
+    "No Sensor Readings" : {
+      "comment" : "Alert title for signal loss",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen sensormetingen"
+          }
+        }
+      }
+    },
     "No pairing code or saved key is available for this sensor." : {
       "comment" : "Error description when a G7 authentication is attempted with no credentials",
       "localizations" : {
@@ -580,17 +603,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Er zijn al 20 minuten geen metingen binnengekomen. Houd je telefoon in de buurt van de sensor. Blijft dit zo, controleer je glucose dan met een meter."
-          }
-        }
-      }
-    },
-    "No Sensor Readings" : {
-      "comment" : "Alert title for signal loss",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geen sensormetingen"
           }
         }
       }
@@ -660,6 +672,59 @@
           }
         }
       }
+    },
+    "Sensor Expired" : {
+      "comment" : "Alert title at nominal sensor expiry",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor verlopen"
+          }
+        }
+      }
+    },
+    "Sensor Expires in 2 Hours" : {
+      "comment" : "Alert title 2 hours before sensor expiry",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor verloopt over 2 uur"
+          }
+        }
+      }
+    },
+    "Sensor Expires in 24 Hours" : {
+      "comment" : "Alert title 24 hours before sensor expiry",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor verloopt over 24 uur"
+          }
+        }
+      }
+    },
+    "Sensor Failed" : {
+      "comment" : "Alert title for a failed sensor"
+    },
+    "Sensor Pairing Not Finished" : {
+      "comment" : "Alert title when a G7 pairing's Bluetooth bond did not complete"
+    },
+    "Sensor Session Ended" : {
+      "comment" : "Alert title at the end of the sensor grace period",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorsessie beëindigd"
+          }
+        }
+      }
+    },
+    "Sensor code needed for %1$@. Enter it in the Dexcom G7 settings on your phone; it is shown in the Dexcom app." : {
+      "comment" : "Watch note when the watch has no pairing code for the G7 (1: sensor name)"
     },
     "Sensor expired" : {
       "comment" : "The description of sensor algorithm state when sensor is expired.",
@@ -810,39 +875,6 @@
         }
       }
     },
-    "Sensor Expired" : {
-      "comment" : "Alert title at nominal sensor expiry",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor verlopen"
-          }
-        }
-      }
-    },
-    "Sensor Expires in 2 Hours" : {
-      "comment" : "Alert title 2 hours before sensor expiry",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor verloopt over 2 uur"
-          }
-        }
-      }
-    },
-    "Sensor Expires in 24 Hours" : {
-      "comment" : "Alert title 24 hours before sensor expiry",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor verloopt over 24 uur"
-          }
-        }
-      }
-    },
     "Sensor failed" : {
       "comment" : "The description of sensor algorithm state when sensor failed.",
       "localizations" : {
@@ -988,6 +1020,155 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "传感器故障"
+          }
+        }
+      }
+    },
+    "Sensor is OK" : {
+      "comment" : "The description of sensor algorithm state when sensor is ok.",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المستشعر يعمل جيداً"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senzor je v pořádku"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor er OK"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor ist OK"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El sensor está bien"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor is OK"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le capteur est OK"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "החיישן תקין"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor is OK"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il sensore è OK"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor er OK"
+          }
+        },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensoren er OK"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor is OK"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor jest OK"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor is OK"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor is OK"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senzorul este OK"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сенсор ОК"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senzor je v poriadku"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorn är OK"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensör iyi durumda"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сенсор підключено"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor is OK"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器正常"
           }
         }
       }
@@ -1143,155 +1324,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "传感器处于未知状态 %1$d"
-          }
-        }
-      }
-    },
-    "Sensor is OK" : {
-      "comment" : "The description of sensor algorithm state when sensor is ok.",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "المستشعر يعمل جيداً"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Senzor je v pořádku"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor er OK"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor ist OK"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El sensor está bien"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor is OK"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Le capteur est OK"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "החיישן תקין"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor is OK"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Il sensore è OK"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor er OK"
-          }
-        },
-        "nb-NO" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensoren er OK"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor is OK"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor jest OK"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Sensor is OK"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor is OK"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Senzorul este OK"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сенсор ОК"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Senzor je v poriadku"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorn är OK"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensör iyi durumda"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сенсор підключено"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensor is OK"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "传感器正常"
           }
         }
       }
@@ -1606,17 +1638,6 @@
         }
       }
     },
-    "Sensor Session Ended" : {
-      "comment" : "Alert title at the end of the sensor grace period",
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorsessie beëindigd"
-          }
-        }
-      }
-    },
     "The connection to the sensor was lost before authentication." : {
       "comment" : "Error description when the G7 link drops before authentication starts",
       "localizations" : {
@@ -1639,6 +1660,9 @@
         }
       }
     },
+    "The current sensor stays in use. Discard the failed sensor in the Dexcom G7 settings and pair a new one." : {
+      "comment" : "Alert body when the sensor paired to take over failed"
+    },
     "The pairing code is the 4-digit number printed on the sensor applicator." : {
       "comment" : "Pairing failure reason for a malformed G7 pairing code",
       "localizations" : {
@@ -1649,6 +1673,9 @@
           }
         }
       }
+    },
+    "The pairing code was right, but pairing could not finish with the app in the background. Open the app and keep it open until a glucose reading shows, and accept the Bluetooth pairing request if one appears." : {
+      "comment" : "Alert body when a G7 pairing's Bluetooth bond did not complete"
     },
     "The sensor accepted the pairing code but refused the connection." : {
       "comment" : "Error description for a G7 sensor rejecting an authenticated connection with no reason given",
@@ -1682,6 +1709,9 @@
           }
         }
       }
+    },
+    "The sensor no longer recognizes this phone. Pair it again with its code." : {
+      "comment" : "Error description when a G7 sensor no longer honors the saved key and no pairing code is available"
     },
     "The sensor refused to connect. It may be in use by another phone or app. Open the CGM settings for details." : {
       "comment" : "Alert body when the sensor refuses authentication",
